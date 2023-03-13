@@ -104,4 +104,32 @@ public class MemberBController {
 		return "/memberB/myPageMainB";
 	}
 	
+	@RequestMapping(value = "/memberB/contractList", method = RequestMethod.GET)
+	public String contractList(Locale locale, Model model) {
+		logger.info("계약관리", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "/memberB/contractList";
+	}
+	
+	@RequestMapping(value = "/memberB/QList", method = RequestMethod.GET)
+	public String QList(Locale locale, Model model) {
+		logger.info("문의관리", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "/memberB/QList";
+	}
+	
 }

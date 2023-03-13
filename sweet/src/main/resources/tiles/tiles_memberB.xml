@@ -37,8 +37,18 @@
 	</definition>
 	
 	<definition name="/memberB/myPageMainB" extends="baseLayoutB">
-	      <put-attribute name="title" value="상품목록창" />
+	      <put-attribute name="title" value="마이페이지메인" />
 	      <put-attribute name="body" value="/WEB-INF/views/memberB/myPageMainB.jsp" />
+	</definition>
+	
+	<definition name="/memberB/contractList" extends="baseLayoutB">
+	      <put-attribute name="title" value="계약내역" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/contractList.jsp" />
+	</definition>
+	
+	<definition name="/memberB/QList" extends="baseLayoutB">
+	      <put-attribute name="title" value="상품문의내역" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/QList.jsp" />
 	</definition>
 	
 </tiles-definitions>
