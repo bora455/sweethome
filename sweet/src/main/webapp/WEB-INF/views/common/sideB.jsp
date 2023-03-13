@@ -8,7 +8,7 @@
 .side_C{background-color: aquamarine;}
 </style>
 
-<div class="btnon_s1" style="min-height: 500px; ">
+<div style="min-height: 500px; ">
 	<button class="btnon_s1" onclick="location.href = '#'">마이페이지</button>
 	<button class="btnon_s1" onclick="location.href = 'memberBMod'">회원정보수정</button>
 	<button class="btnon_s1" onclick="location.href = '#'">계약 관리</button>
