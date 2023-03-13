@@ -36,4 +36,9 @@
 	      <put-attribute name="body" value="/WEB-INF/views/memberB/memberBMod.jsp" />
 	</definition>
 	
+	<definition name="/memberB/myPageMainB" extends="baseLayoutB">
+	      <put-attribute name="title" value="상품목록창" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/myPageMainB.jsp" />
+	</definition>
+	
 </tiles-definitions>

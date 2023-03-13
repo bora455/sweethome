@@ -90,4 +90,18 @@ public class MemberBController {
 		return "/memberB/memberBMod";
 	}
 	
+	@RequestMapping(value = "/memberB/myPageMainB", method = RequestMethod.GET)
+	public String myPageMainB(Locale locale, Model model) {
+		logger.info("마이페이지", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "/memberB/myPageMainB";
+	}
+	
 }

@@ -37,19 +37,19 @@ function goodsList() {
         </div>
             <div>
                 <label form="goods_name">매물 이름</label>
-                <input type="text" id="goods_name" name="goods_name" placeholder="이름을 입력하세요">
+                <input type="text" id="goods_name" name="goods_name">
             </div>
             <div>
                 <label form="goods_floor">건물 층수</label>
-                <input type="text" id="goods_floor" name="goods_floor" placeholder="층수를 입력하세요">
+                <input type="text" id="goods_floor" name="goods_floor">
             </div>
             <div>
                 <label form="goods_area">공급 면적</label>
-                <input type="text" id="goods_area" name="goods_area" placeholder="공급 면적을 입력하세요">
+                <input type="text" id="goods_area" name="goods_area">
             </div>
             <div>
                 <label form="goods_adr">주소</label>
-                <input type="text" id="goods_adr" name="goods_adr" placeholder="주소을 입력하세요">
+                <input type="text" id="goods_adr" name="goods_adr">
             </div>
 
             <hr>
