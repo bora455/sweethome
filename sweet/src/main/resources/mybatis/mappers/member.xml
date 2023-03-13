@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">	
+   <resultMap id="memResult" type="memberVO">
+      <result property="member_id" column="member_id" />
+      <result property="member_pw" column="member_pw" />
+      <result property="member_name" column="member_name" />
+      <result property="member_email" column="member_email" />
+      <result property="member_addr1" column="member_addr1" />
+      <result property="member_addr2" column="member_addr2" />
+      <result property="member_tel1" column="member_tel1" />
+      <result property="member_tel2" column="member_tel2" />
+      <result property="member_hp1" column="member_hp1" />
+      <result property="member_hp2" column="member_hp2" />
+      <result property="member_birth" column="member_birth" />
+   </resultMap> 
+ 
+ 
+   <select id="selectAllMemberList" resultMap="memResult"   >
+      <![CDATA[
+        select * from member order by joinDate desc			
+      ]]>
+   </select>
+
+  <select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
+	<![CDATA[
+		select * from member	
+		where member_id=#{member_id} and member_pw=#{member_pw}		
+	]]>
+  </select>
+  <select id="selectMemberById" resultType="memberVO" parameterType="String">
+		<![CDATA[
+			select * from member where member_id = #{member_id}
+		]]>
+	</select>
+
+</mapper>

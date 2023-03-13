@@ -1,0 +1,99 @@
+/* 전체 페이지 스타일링 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+/* 제목 스타일링 */
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 30px;
+}
+
+/* 폼 스타일링 */
+form {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 0.5rem;
+}
+
+label {
+  font-size: 18px;
+  margin-right: 10px;
+  margin-bottom: 0.5rem;
+}
+
+select {
+  font-size: 18px;
+  padding: 5px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 0.5rem;
+}
+
+button[type="submit"] {
+  font-size: 18px;
+  padding: 5px 10px;
+  background-color: #112d4e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 테이블 스타일링 */
+.table {
+  border-collapse: collapse;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+th {
+  font-weight: bold;
+  background-color: #112d4e;
+  color: white;
+}
+
+/* 추가, 수정, 삭제 버튼 스타일링 */
+button {
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #112d4e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+/* 이미지 스타일링 */
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* 상품 등록 버튼 스타일링 */
+.row {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.col button {
+  font-size: 18px;
+  padding: 5px 10px;
+  background-color: #112d4e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
