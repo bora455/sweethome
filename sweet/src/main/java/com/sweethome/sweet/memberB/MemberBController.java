@@ -35,7 +35,7 @@ public class MemberBController {
 	}
 	
 	@RequestMapping(value = "/memberB/goodsDetail", method = RequestMethod.GET)
-	public String item(Locale locale, Model model) {
+	public String goodsDetail(Locale locale, Model model) {
 		logger.info("상품 상세", locale);
 		
 		Date date = new Date();

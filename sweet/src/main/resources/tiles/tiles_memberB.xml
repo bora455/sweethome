@@ -18,7 +18,7 @@
 	
 	<definition name="/memberB/goodsDetail" extends="baseLayoutB">
 	      <put-attribute name="title" value="상품상세창" />
-	      <put-attribute name="body" value="/WEB-INF/views/memberB/goodsgoodsDetail.jsp" />
+	      <put-attribute name="body" value="/WEB-INF/views/memberB/goodsDetail.jsp" />
 	</definition>
 	
 	<definition name="/memberB/goodsAdd" extends="baseLayoutB">
