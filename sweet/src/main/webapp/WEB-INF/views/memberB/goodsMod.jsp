@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>상품수정 페이지</title>
-    <link rel="stylesheet" href="resources/css/memberB/goodsMod.css?after" type="text/css">
+    <link rel="stylesheet" href="webapp/resources/css/memberB/goodsMod.css?after" type="text/css">
 </head>
 
 <script>

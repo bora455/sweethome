@@ -11,21 +11,12 @@
   font-family: 'PT Serif', serif;
   font-family: 'Noto Sans KR', sans-serif;
 */
-body {  
+.memberBMod {  
  font-family: 'Noto Sans KR', sans-serif;
 font-size: 0.8em; 
 line-height: 1.5em;   
 margin: 0px;
 color: #666;
-}  
-
-h1 {  
-font-size: 6em;   
-line-height: 0.5em;  
-color: #000;
- font-family: 'Noto Sans KR', sans-serif;
-text-transform: uppercase;
-display:inline;
 }  
   
 h2 {  
@@ -80,14 +71,6 @@ ul li {
 list-style: none;/*텍스트가로정렬*/
 display: inline;
 }
-/* 버튼 기본설정*/
-.d-button{color:#000;
-         text-transform:uppercase;
-         padding: 10px 20px;
-         margin: 10px 0px;
-         display: inline-block;
-         background-color: #fff;
-}
 
 /*회원구분+가입양식*/
 .sign{
@@ -108,12 +91,17 @@ display: inline;
   line-height:2em;
   
 }
+
 .hr1{
   margin:20px auto 10px; border:1px solid black;
+  padding: 0px;
+  width: 1000=px;
 }
 .hr2{
   margin:15px auto 15px;
+  width: 1000px;
 }
+
 .sign-text{
   border:px solid red;
   float:left;
@@ -254,14 +242,15 @@ input[id="cb5"] {
   text-align:center;
 }
 .sign-button .d-button{
-  background-color:#cccc;
-  padding:10px 30px;
-  margin-right:40px;
+  font-weight:bold;  
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #112d4e;
   color: white;
-  font-size:1.1em;
-  font-weight:bold;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top:30px;
+  margin: 5px;
 }
 .sign-button .d-button:hover{
   background-color:#222;

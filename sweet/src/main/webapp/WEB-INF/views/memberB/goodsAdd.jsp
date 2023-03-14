@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>상품등록 페이지</title>
-    <link rel="stylesheet" href="resources/css/memberB/goodsAdd.css" type="text/css">
+    <link rel="stylesheet" href="webapp/resources/css/memberB/goodsAdd.css" type="text/css">
 </head>
 
 <script>

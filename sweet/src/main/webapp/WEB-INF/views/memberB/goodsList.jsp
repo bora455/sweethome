@@ -13,8 +13,21 @@
   <head>
     <meta charset="UTF-8">
     <title>상품관리 페이지</title>
-    <link rel="stylesheet" href="resources/css/memberB/goodsList.css?after" type="text/css">
+    <link rel="stylesheet" href="webapp/resources/css/memberB/goodsList.css?after" type="text/css">
   </head>
+  
+  <style>
+  button {
+  font-size: 16px;
+  padding: 5px 10px;
+  background-color: #112d4e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+  </style>
   
   <script>
   function goodsDetail() {
