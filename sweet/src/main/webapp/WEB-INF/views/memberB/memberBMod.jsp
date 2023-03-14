@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3.0">
 <title>회원정보수정</title>
-<link rel="stylesheet" href="webapp/resources/css/memberB/memberBMod.css?after" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"> 
 </script> 
 </head>
@@ -213,6 +212,21 @@ input[type="checkbox"]:checked + label {
   cursor: pointer;
 }
 
+/* 수정, 삭제버튼 */
+.btn {
+background-color: #112d4e;
+border: none;
+border-radius: 4px;
+color: #fff;
+cursor: pointer;
+font-size: 1rem;
+margin-top: 1rem;
+padding: 0.5rem 1rem;
+}
+
+.btn:hover {
+background-color: #3e8e41;
+}
 </style>
 
 <script>
@@ -358,9 +372,9 @@ zipcode.addEventListener('click', openZipcodePopup);
 
 	<br> <br> <br>
 
-	<div class="sign-button">
-		<button class="d-button">취소</button>
-		<button class="d-button">수정완료</button>
+	<div>
+		<button class="btn" type="submit" onclick="location.href = './myPageMainB'">취소</button>
+		<button class="btn" type="submit">수정완료</button>
 	</div>
 </div>
  </body>

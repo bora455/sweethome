@@ -10,15 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Handles requests for the application home page.
- */
-@Controller("memberBController")
-public class MemberBController {
+@Controller("memberControllerB")
+public class MemberControllerB{
 	
-	private static final Logger logger = LoggerFactory.getLogger(MemberBController.class);
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberControllerB.class);
 	
 	@RequestMapping(value = "/memberB/goodsList", method = RequestMethod.GET)
 	public String goodsList(Locale locale, Model model) {
@@ -131,5 +128,4 @@ public class MemberBController {
 		
 		return "/memberB/QList";
 	}
-	
 }

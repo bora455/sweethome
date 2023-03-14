@@ -5,8 +5,68 @@
 <head>
     <meta charset="UTF-8">
     <title>상품상세 페이지</title>
-    <link rel="stylesheet" href="webapp/resources/css/memberB/goodsDetail.css?after" type="text/css">
 </head>
+
+<style>
+/* Global styles */
+body {
+font-size: 16px;
+line-height: 1.5;
+margin: 0;
+padding: 0;
+}
+
+/* Form styles */
+form {
+border: 1px solid #ccc;
+border-radius: 4px;
+margin: 2rem auto;
+max-width: 600px;
+padding: 2rem;
+}
+
+label {
+display: block;
+font-size: 1rem;
+font-weight: bold;
+margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="file"] {
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+font-size: 1rem;
+margin-bottom: 1.5rem;
+padding: 0.5rem;
+width: 100%;
+}
+
+/* 버튼 */
+.btn {
+background-color: #112d4e;
+border: none;
+border-radius: 4px;
+color: #fff;
+cursor: pointer;
+font-size: 1rem;
+margin-top: 1rem;
+padding: 0.5rem 1rem;
+}
+
+.btn:hover {
+background-color: #3e8e41;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+form {
+margin: 1rem;
+padding: 1rem;
+}
+}
+</style>
 
 <script>
 function goodsMod() {
@@ -23,13 +83,12 @@ function goodsList() {
 </script>
 
 <body>
-<form>
 <div>
     <div>
         <h1>상품 상세</h1>
     </div>
 
-    <div>
+    <div class="goodsDetail">
         <form>
         <div>
         <label form="goods_img1">매물 사진</label>
@@ -56,13 +115,13 @@ function goodsList() {
             
             <div class="row">
 				<div class="col">
-					<button type="button" onclick="goodsMod()">수정하기</button>
+					<button class="btn" type="submit" onclick="goodsMod()">수정하기</button>
 				</div>
 				<div class="col">
-					<button type="button" onclick="goodsDel()">삭제하기</button>
+					<button class="btn" type="submit" onclick="goodsDel()">삭제하기</button>
 				</div>
 				<div class="col">
-					<button type="button" onclick="goodsList()">목록으로</button>
+					<button class="btn" onclick="goodsList()">목록으로</button>
 				</div>
 			</div>
         </form>
