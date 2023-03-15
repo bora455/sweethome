@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.memberB">	
+   <resultMap id="memResultB" type="memberVOB">
+      <result property="bp_id" column="bp_id" />
+      <result property="bp_pw" column="bp_pw" />
+      <result property="name" column="name" />
+      <result property="dp_name" column="dp_name" />
+      <result property="email" column="email" />
+      <result property="addr1" column="addr1" />
+      <result property="addr2" column="addr2" />
+      <result property="tel1" column="tel1" />
+      <result property="tel2" column="tel2" />
+      <result property="hp1" column="hp1" />
+      <result property="hp2" column="hp2" />
+   </resultMap> 
+ 
+ 
+   <select id="selectAllMemberListB" resultMap="memResultB"   >
+      <![CDATA[
+        select * from business order by bp_join desc			
+      ]]>
+   </select>
+
+  <select id="loginByIdB"  resultType="memberVOB"   parameterType="memberVOB" >
+	<![CDATA[
+		select * from business	
+		where bp_id=#{bp_id} and bp_pw=#{bp_pw}		
+	]]>
+  </select>
+  <select id="selectMemberByIdB" resultType="memberVOB" parameterType="String">
+		<![CDATA[
+			select * from business where bp_id = #{bp_id}
+		]]>
+	</select>
+
+</mapper>

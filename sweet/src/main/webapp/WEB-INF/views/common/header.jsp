@@ -9,67 +9,6 @@ header {
 	background-color: beige;
 }
 </style>
-<script type="text/javascript">
-var loopSearch=true;
-function keywordSearch(){
-	if(loopSearch==false)
-		return;
- var value=document.frmSearch.searchWord.value;
-	$.ajax({
-		type : "get",
-		async : true, //false인 경우 동기식으로 처리한다.
-		url : "${contextPath}/goods/keywordSearch.do",
-		data : {keyword:value},
-		success : function(data, textStatus) {
-		    var jsonInfo = JSON.parse(data);
-			displayResult(jsonInfo);
-		},
-		/* error : function(data, textStatus) {
-			alert("에러가 발생했습니다."+data); */
-		},
-		complete : function(data, textStatus) {
-			//alert("작업을완료 했습니다");
-			
-		}
-	}); //end ajax	
-}
-
-
-function displayResult(jsonInfo){
-	var count = jsonInfo.keyword.length;
-	if(count > 0) {
-	    var html = '';
-	    for(var i in jsonInfo.keyword){
-		   html += "<a href=\"javascript:select('"+jsonInfo.keyword[i]+"')\">"+jsonInfo.keyword[i]+"</a><br/>";
-	    }
-	    var listView = document.getElementById("suggestList");
-	    listView.innerHTML = html;
-	    show('suggest');
-	}else{
-	    hide('suggest');
-	} 
-}
-
-function select(selectedKeyword) {
-	 document.frmSearch.searchWord.value=selectedKeyword;
-	 loopSearch = false;
-	 hide('suggest');
-}
-	
-function show(elementId) {
-	 var element = document.getElementById(elementId);
-	 if(element) {
-	  element.style.display = 'block';
-	 }
-	}
-
-function hide(elementId){
-   var element = document.getElementById(elementId);
-   if(element){
-	  element.style.display = 'none';
-   }
-}
-</script>
 <html>
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <body>
@@ -89,14 +28,27 @@ function hide(elementId){
 				<c:choose>
 				<c:when test="${isLogOn==true and not empty member }">
 				
-				<h2>${member.member_name} 님! 로그인을 환영합니다.!</h2>
-				<c:if test="${isLogOn==true and member.member_id =='admin' }">
-				<a href="#">관리자페이지</a>
-				</c:if>
-				<c:if test="${isLogOn==true and member.member_id !='admin' }">
-				<a href="#">마이페이지</a>
-				</c:if>
-				<br>
+				<h2>
+					<c:choose>
+						<c:when test="${not empty business}">${business.name} 님! 로그인을 환영합니다.!</c:when>
+						<c:otherwise>${member.name} 님! 로그인을 환영합니다.!</c:otherwise>
+					</c:choose>
+				</h2>
+					<c:if test="${isLogOn==true and member.member_id =='admin' }">
+						<a href="#">관리자페이지</a>
+					</c:if>
+					<c:if test="${isLogOn==true and member.member_id !='admin' }">
+						<c:choose>
+							<c:when test="${not empty business}">
+								<a href="${contextPath}/memberB/mayPageMainB">사업자페이지</a>
+							</c:when>
+							<c:otherwise>
+								<a href="#">일반사용자페이지</a>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+
+						<br>
 				<br>
 				<a href="${contextPath}/member/logout.do">로그아웃</a>
 				</c:when>
