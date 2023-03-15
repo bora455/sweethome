@@ -163,15 +163,15 @@ body {
 			<label for="radio-1">사용자 로그인</label>
 		</div>
 		<div class="form_radio_btn">
-			<input id="radio-2" type="radio" name="user" value="userD">
+			<input id="radio-2" type="radio" name="user" value="userB">
 			<label for="radio-2">사업자 로그인</label>
 		</div>
 	</div>
 	<div class="hc">
-		<form id="loginForm" method="post">
+		<form action="${contextPath}/memberB/loginB.do" method="post">
 			<br> 
-			<input type="text" name="member_id" class="text-field" placeholder="아이디"> 
-			<input type="password" name="member_pw" class="text-field" placeholder="비밀번호"> 
+			<input type="text" name="bp_id" class="text-field" placeholder="아이디"> 
+			<input type="password" name="pb_pw" class="text-field" placeholder="비밀번호"> 
 			<input type="checkbox" />아이디 저장<br>
 			<br>
 			<br>
@@ -192,7 +192,7 @@ body {
 			var user = $('input[name=user]:checked').val();
 			if (user === 'userC') {
 				$('#loginForm').attr('action', '${contextPath}/member/login.do');
-			} else if (user === 'userD') {
+			} else if (user === 'userB') {
 				$('#loginForm').attr('action', '${contextPath}/memberB/loginB.do');
 			}
 			$('#loginForm').submit();

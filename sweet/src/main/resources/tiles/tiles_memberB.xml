@@ -51,4 +51,9 @@
 	      <put-attribute name="body" value="/WEB-INF/views/memberB/QList.jsp" />
 	</definition>
 	
+	<definition name="/memberB/loginFormB" extends="baseLayoutB">
+      <put-attribute name="title" value="로그인창" />
+      <put-attribute name="body" value="/WEB-INF/views/memberB/loginFormB.jsp" />
+   </definition>
+	
 </tiles-definitions>

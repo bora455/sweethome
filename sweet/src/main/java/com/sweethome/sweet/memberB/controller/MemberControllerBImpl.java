@@ -90,11 +90,11 @@ public class MemberControllerBImpl   implements MemberControllerB {
 	    if(actionB!= null) {
 	       mav.setViewName("redirect:"+actionB);
 	    }else {
-	       mav.setViewName("redirect:/main.do");	
+	       mav.setViewName("redirect:/mainB.do");	
 	    }
 
 	}else {
-	   rAttr.addAttribute("resultB","loginFailed");
+	   rAttr.addAttribute("resultB","loginFailedB");
 	   mav.setViewName("redirect:/memberB/loginFormB.do");
 	}
 	return mav;
@@ -173,14 +173,23 @@ public class MemberControllerBImpl   implements MemberControllerB {
 			end = uri.length();
 		}
 
+		String viewName = uri.substring(begin, end);
+		if (viewName.indexOf(".") != -1) {
+			viewName = viewName.substring(0, viewName.lastIndexOf("."));
+		}
+		if (viewName.lastIndexOf("/") != -1) {
+			viewName = viewName.substring(viewName.lastIndexOf("/", 1), viewName.length());
+		}
+		
 		String viewNameB = uri.substring(begin, end);
 		if (viewNameB.indexOf(".") != -1) {
 			viewNameB = viewNameB.substring(0, viewNameB.lastIndexOf("."));
 		}
 		if (viewNameB.lastIndexOf("/") != -1) {
-			viewNameB = viewNameB.substring(viewNameB.lastIndexOf("/", 1), viewNameB.length());
+			viewNameB = viewNameB.substring(viewName.lastIndexOf("/", 1), viewNameB.length());
 		}
-		return viewNameB;
+		
+		return viewName;
 	}
 
 

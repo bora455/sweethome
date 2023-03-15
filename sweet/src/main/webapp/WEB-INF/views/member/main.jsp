@@ -151,38 +151,6 @@ body {
 		}
 </style>
 <body>
-	<h1>로그인</h1>
-
-	<main class="hc">
-		<h2>로그인</h2>
-		<hr>
-		<div class="top">
-			<div class="form_radio_btn">
-				<input id="radio-1" type="radio" name="user" value="userC" checked>
-				<label for="radio-1">사용자 로그인</label>
-			</div>
-			<div class="form_radio_btn">
-				<input id="radio-2" type="radio" name="user" value="userD">
-				<label for="radio-2">사업자 로그인</label>
-			</div>
-		</div>
-		<div class="hc">
-			<br> <input type="text" name="email" class="text-field"
-				placeholder="아이디"> <input type="password" name="password"
-				class="text-field" placeholder="비밀번호">
-			<div>
-				<input type="checkbox" />아이디 저장<br><br><br><br>
-				<button class="btnon btnon1" onclick="location.href = '#'">로그인</button>
-				<br>
-				<button class="btnon btnon1" onclick="location.href = '#'">회원가입</button>
-				<br>
-				<button class="btnon btnon1" onclick="location.href = '#'">아이디/비밀번호
-					찾기</button>
-
-			</div>
-		</div>
-	</main>
-
 
 </body>
 </html>
