@@ -29,6 +29,14 @@ public class MemberControllerBImpl   implements MemberControllerB {
 	@Autowired
 	private MemberVOB memberVOB ;
 	
+	@RequestMapping(value = { "/","/mainB.do"}, method = RequestMethod.GET)
+	private ModelAndView mainB(HttpServletRequest request, HttpServletResponse response) {
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 	@Override
 	@RequestMapping(value="/memberB/listMembersB.do" ,method = RequestMethod.GET)
 	public ModelAndView listMembersB(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -192,5 +200,7 @@ public class MemberControllerBImpl   implements MemberControllerB {
 		return viewName;
 	}
 
+	
+	
 
 }

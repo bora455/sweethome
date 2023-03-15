@@ -11,6 +11,11 @@
       <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
    </definition>
    
+   <definition name="mainB" extends="baseLayoutB">
+      <put-attribute name="title" value="메인페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/memberB/mainB.jsp" />
+   </definition>
+   
 	<definition name="/memberB/goodsList" extends="baseLayoutB">
 	      <put-attribute name="title" value="상품목록창" />
 	      <put-attribute name="body" value="/WEB-INF/views/memberB/goodsList.jsp" />
@@ -55,5 +60,6 @@
       <put-attribute name="title" value="로그인창" />
       <put-attribute name="body" value="/WEB-INF/views/memberB/loginFormB.jsp" />
    </definition>
+	
 	
 </tiles-definitions>
