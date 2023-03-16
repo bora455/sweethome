@@ -159,19 +159,19 @@ body {
 	<hr>
 	<div class="top">
 		<div class="form_radio_btn">
-			<input id="radio-1" type="radio" name="user" value="userC" checked>
-			<label for="radio-1">사용자 로그인</label>
+			<input id="radio-1" type="radio" name="user" value="userC">
+			<label for="radio-1" onclick="location.href = '${contextPath}/member/loginForm.do'">사용자 로그인</label>
 		</div>
 		<div class="form_radio_btn">
-			<input id="radio-2" type="radio" name="user" value="userB">
-			<label for="radio-2">사업자 로그인</label>
+			<input id="radio-2" type="radio" name="user" value="userB" checked>
+			<label for="radio-2" onclick="location.href = '${contextPath}/memberB/loginFormB.do'">사업자 로그인</label>
 		</div>
 	</div>
 	<div class="hc">
 		<form action="${contextPath}/memberB/loginB.do" method="post">
 			<br> 
 			<input type="text" name="bp_id" class="text-field" placeholder="아이디"> 
-			<input type="password" name="pb_pw" class="text-field" placeholder="비밀번호"> 
+			<input type="password" name="bp_pw" class="text-field" placeholder="비밀번호"> 
 			<input type="checkbox" />아이디 저장<br>
 			<br>
 			<br>
@@ -184,23 +184,6 @@ body {
 		<button class="btnon btnon1" onclick="location.href = '#'">아이디/비밀번호 찾기</button>
 	</div>
 </main>
-
-<script>
-	$(function() {
-		// 로그인 버튼 클릭 시
-		$('#loginBtn').click(function() {
-			var user = $('input[name=user]:checked').val();
-			if (user === 'userC') {
-				$('#loginForm').attr('action', '${contextPath}/member/login.do');
-			} else if (user === 'userB') {
-				$('#loginForm').attr('action', '${contextPath}/memberB/loginB.do');
-			}
-			$('#loginForm').submit();
-		});
-	});
-</script>
-
-
 
 </body>
 </html>

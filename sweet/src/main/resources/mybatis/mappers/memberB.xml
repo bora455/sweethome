@@ -32,22 +32,48 @@
    </resultMap> 
  
  
-   <select id="selectAllMemberListB" resultMap="memResultB"   >
-      <![CDATA[
-        select * from business order by bp_join desc			
-      ]]>
-   </select>
-
-  <select id="loginByIdB"  resultType="memberVOB"   parameterType="memberVOB" >
-	<![CDATA[
-		select * from business	
-		where bp_id=#{bp_id} and bp_pw=#{bp_pw}		
-	]]>
-  </select>
-  <select id="selectMemberByIdB" resultType="memberVOB" parameterType="String">
+	 <select id="loginByIdB"  resultType="memberVOB"   parameterType="memberVOB" >
+		<![CDATA[
+			select * from business	
+			where bp_id=#{bp_id} and bp_pw=#{bp_pw}		
+		]]>
+	 </select>
+  
+  	<!-- 회원 정보 조회 -->
+	<select id="memView" parameterType="String" resultMap="memResultB">
 		<![CDATA[
 			select * from business where bp_id = #{bp_id}
 		]]>
 	</select>
+  
+  	<!-- 회원 정보 수정 -->
+	<update id="memMod" parameterType="memberVOB">
+		UPDATE business
+		SET bp_pw=#{bp_pw},
+			email=#{email},
+			addr1=#{addr1},
+			addr2=#{addr2},
+			tel1=#{tel1},
+			tel2=#{tel2},
+			hp1=#{hp1},
+			hp2=#{hp2},
+			photo=#{photo},
+			type=#{type},
+			car=#{car},
+			location_x=#{location_x},
+			location_y=#{location_y}
+		WHERE bp_id=#{bp_id}
+	</update>
 
+	<select id="selectAllMemberListB" resultMap="memResultB"   >
+      <![CDATA[
+        select * from business order by bp_join desc         
+      ]]>
+   </select>
+
+	<select id="selectMemberByIdB" resultType="memberVOB" parameterType="String">
+      <![CDATA[
+         select * from business where bp_id = #{bp_id}
+      ]]>
+   </select>
 </mapper>

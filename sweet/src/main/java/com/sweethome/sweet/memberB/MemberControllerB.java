@@ -73,19 +73,7 @@ public class MemberControllerB{
 		return "/memberB/goodsMod";
 	}
 	
-	@RequestMapping(value = "/memberB/memberBMod", method = RequestMethod.GET)
-	public String modBP(Locale locale, Model model) {
-		logger.info("회원 정보 수정", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "/memberB/memberBMod";
-	}
+	
 	
 	@RequestMapping(value = "/memberB/myPageMainB", method = RequestMethod.GET)
 	public String myPageMainB(Locale locale, Model model) {

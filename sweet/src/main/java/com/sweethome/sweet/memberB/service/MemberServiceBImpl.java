@@ -1,5 +1,6 @@
 package com.sweethome.sweet.memberB.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sweethome.sweet.member.vo.MemberVO;
 import com.sweethome.sweet.memberB.dao.MemberDAOB;
 import com.sweethome.sweet.memberB.vo.MemberVOB;
 
@@ -20,13 +22,16 @@ public class MemberServiceBImpl implements MemberServiceB {
 	private MemberDAOB memberDAOB;
 
 	@Override
-	public List listMembersB() throws DataAccessException {
-		List membersListB = null;
-		membersListB = memberDAOB.selectAllMemberListB();
-		return membersListB;
+	public MemberVOB loginB(MemberVOB memberVOB) throws Exception{
+		return memberDAOB.loginByIdB(memberVOB);
 	}
 	
-	
+	@Override
+	public List listMembersB() throws DataAccessException {
+		List businessList = null;
+		businessList = memberDAOB.selectAllMemberListB();
+		return businessList;
+	}
 
 	@Override
 	public MemberVOB modMemberB(String bp_id) throws DataAccessException {
@@ -34,30 +39,4 @@ public class MemberServiceBImpl implements MemberServiceB {
 		memberVOB = memberDAOB.selectMemberByIdB(bp_id);
 		return memberVOB;
 	}
-
-
-
-	@Override
-	public int addMemberB(MemberVOB memberB) throws DataAccessException {
-		return memberDAOB.insertMemberB(memberB);
-	}
-
-	@Override
-	public int removeMemberB(String bp_id) throws DataAccessException {
-		return memberDAOB.deleteMemberB(bp_id);
-	}
-	
-	@Override
-	public MemberVOB loginB(MemberVOB memberVOB) throws Exception{
-		return memberDAOB.loginByIdB(memberVOB);
-	}
-
-
-
-	@Override
-	public int updateMemberB(MemberVOB memberB)throws DataAccessException{
-		return memberDAOB.updateMemberB(memberB);
-	}
-	
-
 }

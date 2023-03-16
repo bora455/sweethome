@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,13 +24,14 @@ import com.sweethome.sweet.memberB.vo.MemberVOB;
 
 @Controller("memberControllerB")
 //@EnableAspectJAutoProxy
-public class MemberControllerBImpl   implements MemberControllerB {
+public class MemberControllerBImpl implements MemberControllerB {
 	@Autowired
 	private MemberServiceB memberServiceB;
 	@Autowired
 	private MemberVOB memberVOB ;
 	
-	@RequestMapping(value = { "/","/mainB.do"}, method = RequestMethod.GET)
+	//로그인 후 메인페이지
+	@RequestMapping(value = { "/memberB/mainB.do"}, method = RequestMethod.GET)
 	private ModelAndView mainB(HttpServletRequest request, HttpServletResponse response) {
 		String viewName = (String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView();
@@ -37,50 +39,7 @@ public class MemberControllerBImpl   implements MemberControllerB {
 		return mav;
 	}
 	
-	@Override
-	@RequestMapping(value="/memberB/listMembersB.do" ,method = RequestMethod.GET)
-	public ModelAndView listMembersB(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("html/text;charset=utf-8");
-		String viewNameB = (String)request.getAttribute("viewNameB");
-		List membersListB = memberServiceB.listMembersB();
-		ModelAndView mav = new ModelAndView(viewNameB);
-		mav.addObject("membersListB", membersListB);
-		return mav;
-	}
-
-	@Override
-	@RequestMapping(value="/memberB/addMemberB.do" ,method = RequestMethod.POST)
-	public ModelAndView addMemberB(@ModelAttribute("memberB") MemberVOB memberB,
-			                  HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("html/text;charset=utf-8");
-		int resultB = 0;
-		resultB = memberServiceB.addMemberB(memberB);
-		ModelAndView mav = new ModelAndView("redirect:/memberB/listMembersB.do");
-		return mav;
-	}
-	
-	@Override
-	@RequestMapping(value="/memberB/removeMemberB.do" ,method = RequestMethod.GET)
-	public ModelAndView removeMemberB(@RequestParam("bp_id") String bp_id, 
-			           HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8");
-		memberServiceB.removeMemberB(bp_id);
-		ModelAndView mav = new ModelAndView("redirect:/memberB/listMembersB.do");
-		return mav;
-	}
-	/*
-	@RequestMapping(value = { "/member/loginForm.do", "/member/memberForm.do" }, method =  RequestMethod.GET)
-	@RequestMapping(value = "/member/*Form.do", method =  RequestMethod.GET)
-	public ModelAndView form(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = getViewName(request);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
-	*/
-	
+	//로그인
 	@Override
 	@RequestMapping(value = "/memberB/loginB.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView loginB(@ModelAttribute("memberB") MemberVOB memberB,
@@ -93,36 +52,22 @@ public class MemberControllerBImpl   implements MemberControllerB {
 	    session.setAttribute("memberB", memberVOB);
 	    session.setAttribute("isLogOn", true);
 	    //mav.setViewName("redirect:/memberB/listMembersB.do");
-	    String actionB = (String)session.getAttribute("actionB");
-	    session.removeAttribute("actionB");
-	    if(actionB!= null) {
-	       mav.setViewName("redirect:"+actionB);
+	    String action = (String)session.getAttribute("action");
+	    session.removeAttribute("action");
+	    if(action!= null) {
+	       mav.setViewName("redirect:"+action);
 	    }else {
-	       mav.setViewName("redirect:/mainB.do");	
+	       mav.setViewName("redirect:/memberB/mainB.do");	
 	    }
 
 	}else {
-	   rAttr.addAttribute("resultB","loginFailedB");
+	   rAttr.addAttribute("result","loginFailedB");
 	   mav.setViewName("redirect:/memberB/loginFormB.do");
 	}
 	return mav;
 	}
 	
-	@Override
-	@RequestMapping(value="/memberB/modMemberB.do", method=RequestMethod.GET)
-	public ModelAndView modMemberB(@RequestParam("bp_id") String bp_id, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		System.out.println("Call modMemberB-method of control");
-		request.setCharacterEncoding("utf-8");
-	    String viewNameB = (String)request.getAttribute("viewNameB");
-		System.out.println("viewNameB : "+viewNameB);
-		MemberVOB memberVOB = memberServiceB.modMemberB(bp_id);
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("memberB",memberVOB);
-		mav.setViewName(viewNameB);
-		return mav;	
-	}
-
+	//로그아웃
 	@Override
 	@RequestMapping(value = "/memberB/logoutB.do", method =  RequestMethod.GET)
 	public ModelAndView logoutB(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -130,34 +75,50 @@ public class MemberControllerBImpl   implements MemberControllerB {
 		session.removeAttribute("memberB");
 		session.removeAttribute("isLogOn");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/main.do");
+		mav.setViewName("redirect:/mainB.do");
 		return mav;
 	}	
 
+	//로그인폼
 	@RequestMapping(value = "/memberB/*FormB.do", method =  RequestMethod.GET)
-	private ModelAndView formB(@RequestParam(value= "resultB", required=false) String resultB,
-							  @RequestParam(value= "actionB", required=false) String actionB,
+	private ModelAndView formB(@RequestParam(value= "result", required=false) String result,
+							  @RequestParam(value= "action", required=false) String action,
 						       HttpServletRequest request, 
 						       HttpServletResponse response) throws Exception {
 		String viewNameB = (String)request.getAttribute("viewNameB");
 		HttpSession session = request.getSession();
-		session.setAttribute("actionB", actionB);  
+		session.setAttribute("action", action);  
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("resultB",resultB);
+		mav.addObject("result",result);
 		mav.setViewName(viewNameB);
 		return mav;
 	}
 	
-
 	@Override
-	@RequestMapping(value="/memberB/updateMemberB.do", method = RequestMethod.POST)
-	public ModelAndView updateMemberB(@ModelAttribute("memberB") MemberVOB memberB, HttpServletRequest request, HttpServletResponse response)throws Exception{
-		System.out.println("Call updateMemberB-method of control");
-		request.setCharacterEncoding("utf-8");
-		int resultB = 0;
-		resultB = memberServiceB.updateMemberB(memberB);
-		ModelAndView mav = new ModelAndView("redirect:/memberB/listMembersB.do");
-		return mav;
+	@RequestMapping(value="/memberB/modMemberB", method=RequestMethod.GET)
+	public ModelAndView modMemberB(@RequestParam("bp_id") String bp_id, HttpServletRequest request, HttpServletResponse response)
+	        throws Exception {
+	    System.out.println("Call modMember-method of control");
+	    request.setCharacterEncoding("utf-8");
+	    String viewName = "/memberB/modMemberB"; // 수정된 부분
+	    System.out.println("viewName : "+viewName);
+	    MemberVOB memberVOB = memberServiceB.modMemberB(bp_id);
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("memberB",memberVOB);
+	    mav.setViewName(viewName);
+	    return mav;    
+	}
+	
+	@Override
+	@RequestMapping(value="/memberB/listMembersB", method=RequestMethod.GET)
+	public ModelAndView listMembersB(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    request.setCharacterEncoding("utf-8");
+	    response.setContentType("html/text;charset=utf-8");
+	    String viewName = "/memberB/listMembersB"; // 수정된 부분
+	    List<MemberVOB> businessList = memberServiceB.listMembersB();
+	    ModelAndView mav = new ModelAndView(viewName);
+	    mav.addObject("businessList", businessList);
+	    return mav;
 	}
 
 	private String getViewNameB(HttpServletRequest request) throws Exception {

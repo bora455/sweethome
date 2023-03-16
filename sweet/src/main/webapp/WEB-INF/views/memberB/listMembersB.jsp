@@ -15,6 +15,9 @@
 <title>회원 정보 출력창</title>
 </head>
 <body>
+
+<h1>회원 정보</h1>
+
 <table border="1"  align="center"  width="80%">
     <tr align="center"   bgcolor="lightgreen">
       <td ><b>아이디</b></td>
@@ -26,18 +29,18 @@
       <td><b>삭제</b></td>
    </tr>
    
- <c:forEach var="member" items="${membersList}" >     
+ <c:forEach var="memberB" items="${businessList}" >     
    <tr align="center">
-      <td>${member.id}</td>
-      <td>${member.pwd}</td>
-      <td>${member.name}</td>
-      <td>${member.email}</td>
-      <td>${member.joinDate}</td>
-      <td><a href="${contextPath }/member/modMember.do?id=${member.id}">수정하기</a></td>
-      <td><a href="${contextPath}/member/removeMember.do?id=${member.id }">삭제하기</a></td>
-    </tr>
-  </c:forEach>   
+      <td>${memberB.bp_id}</td>
+      <td>${memberB.bp_pw}</td>
+      <td>${memberB.name}</td>
+      <td>${memberB.email}</td>
+      <td>${memberB.join_date}</td>
+      <td><a href="${contextPath }/memberB/modMemberB?bp_id=${memberB.bp_id}">수정하기</a></td>
+      <td><a href="#">삭제하기</a></td>
+   </tr>
+</c:forEach>
+ 
 </table>
-<a  href="${contextPath}/member/memberForm.do"><h1 style="text-align:center">회원가입</h1></a>
 </body>
 </html>

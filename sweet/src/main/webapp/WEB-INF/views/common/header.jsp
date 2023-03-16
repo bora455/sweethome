@@ -25,42 +25,39 @@ header {
 				<li><a href="#">커뮤니티</a></li>
 				<li><a href="#">고객센터</a></li>
 				<li><a href="#">날씨정보</a></li>
+
 				<c:choose>
-				<c:when test="${isLogOn==true and not empty member }">
-				
-				<h2>
-					<c:choose>
-						<c:when test="${not empty business}">${business.name} 님! 로그인을 환영합니다.!</c:when>
-						<c:otherwise>${member.name} 님! 로그인을 환영합니다.!</c:otherwise>
-					</c:choose>
-				</h2>
-					<c:if test="${isLogOn==true and member.member_id =='admin' }">
-						<a href="#">관리자페이지</a>
-					</c:if>
-					<c:if test="${isLogOn==true and member.member_id !='admin' }">
+					<c:when test="${isLogOn == true}">
+						<h2>
 						<c:choose>
-							<c:when test="${not empty business}">
-								<a href="${contextPath}/memberB/mayPageMainB">사업자페이지</a>
-							</c:when>
-							<c:otherwise>
-								<a href="#">일반사용자페이지</a>
-							</c:otherwise>
+							<c:when test="${not empty member}">${member.name} 님! 로그인을 환영합니다.</c:when>
+							<c:otherwise>${business.name} 님! 로그인을 환영합니다.</c:otherwise>
 						</c:choose>
-					</c:if>
-
+						</h2>
+						<c:if test="${isLogOn == true and member.member_id == 'admin'}">
+							<a href="#">관리자페이지</a>
+						</c:if>
+						<c:if test="${isLogOn == true and member.member_id != 'admin' }">
+							<c:choose>
+								<c:when test="${not empty business}">
+									<a href="${contextPath}/memberB/mayPageMainB">사업자페이지</a>
+								</c:when>
+								<c:otherwise>
+									<a href="#">마이페이지</a>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
 						<br>
-				<br>
-				<a href="${contextPath}/member/logout.do">로그아웃</a>
-				</c:when>
-				<c:otherwise>
-				<button class="btnon" method="POST"
-					onclick="location.href = '${contextPath}/member/loginForm.do'">로그인</button>
-				<button class="btnon" type="submit" method="POST"
-					onclick="location.href = '#'">회원가입</button>
-				</c:otherwise>
+						<br>
+						<a href="${contextPath}/member/logout.do">로그아웃</a>
+					</c:when>
+					<c:otherwise>
+						<button class="btnon" method="POST"
+							onclick="location.href = '${contextPath}/member/loginForm.do'">로그인</button>
+						<button class="btnon" type="submit" method="POST"
+							onclick="location.href = '#'">회원가입</button>
+					</c:otherwise>
 				</c:choose>
-
-
 
 			</ul>
 		</nav>

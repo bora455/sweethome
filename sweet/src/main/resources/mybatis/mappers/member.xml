@@ -34,9 +34,8 @@
 
   <select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
    <![CDATA[
-      select * from member, business   
-      where (member_id=#{member_id} and member_pw=#{member_pw})
-       or (bp_id=#{bp_id} and bp_pw=#{bp_pw} )        
+      select * from member  
+      where member_id=#{member_id} and member_pw=#{member_pw}
    ]]>
   </select>
   <select id="selectMemberById" resultType="memberVO" parameterType="String">
