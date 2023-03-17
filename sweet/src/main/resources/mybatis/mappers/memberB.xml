@@ -65,12 +65,6 @@
 		WHERE bp_id=#{bp_id}
 	</update> -->
 
-	<select id="selectAllMemberListB" resultMap="memResultB"   >
-      <![CDATA[
-        select * from business order by bp_join desc         
-      ]]>
-   </select>
-
 	<select id="selectMemberByIdB" resultType="memberVOB" parameterType="String">
       <![CDATA[
          select * from business where bp_id = #{bp_id}
@@ -86,9 +80,4 @@
       ]]>      
    </update> 
    
-   <select id="getMemberB" resultType="memberVOB" parameterType="String">
-      <![CDATA[
-         select * from business where bp_id = #{bp_id}
-      ]]>
-   </select>
 </mapper>

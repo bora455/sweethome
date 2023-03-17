@@ -17,10 +17,7 @@ public interface MemberControllerB {
                               HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView logoutB(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
-	public ModelAndView listMembersB(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView modMemberB(@RequestParam("bp_id") String bp_id, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView updateMemberB(@ModelAttribute("memberB") MemberVOB memberVOB, HttpServletRequest request, HttpServletResponse response)throws Exception;
-	
-	/*public ModelAndView memModB(HttpServletRequest request, HttpServletResponse response, MemberVOB memberVOB) throws Exception;*/
 	
 }

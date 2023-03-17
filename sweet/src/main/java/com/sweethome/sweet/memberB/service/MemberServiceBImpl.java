@@ -26,13 +26,6 @@ public class MemberServiceBImpl implements MemberServiceB {
 		return memberDAOB.loginByIdB(memberVOB);
 	}
 	
-	@Override
-	public List listMembersB() throws DataAccessException {
-		List businessList = null;
-		businessList = memberDAOB.selectAllMemberListB();
-		return businessList;
-	}
-
 	public MemberVOB modMemberB(String bp_id) throws DataAccessException {
 		MemberVOB memberVOB = new MemberVOB();
 		memberVOB = memberDAOB.selectMemberByIdB(bp_id);
@@ -44,35 +37,4 @@ public class MemberServiceBImpl implements MemberServiceB {
 		return memberDAOB.updateMemberB(memberB);
 	}
 	
-	@Override
-	public MemberVOB LogInMemberB(String bp_id) throws DataAccessException {
-	    return memberDAOB.getMemberB(bp_id);
-	}
-	
-	/*
-	@Override //수정한 회원 정보 가져옴
-    public int getMemberB(String bp_id) throws Exception {
-		return memberDAOB.getMemB(memberVOB);
-    }
-
-    @Override //수정한 회원 정보 db에 업데이트
-    public int updateMemberB(MemberVOB memberVOB) throws Exception {
-    	return memberDAOB.updateMemB(memberVOB);
-    }
-
-    @Override
-    public MemberVOB getMemberB(String bp_id) throws Exception {
-        return memberDAOB.getMemberB(bp_id);
-    }
-
-    @Override
-    public void updateMemberB(MemberVOB memberVOB) throws Exception {
-        memberDAOB.updateMemberB(memberVOB);
-    }
-
-    @Override
-    public MemberVOB modMemberB(String bp_id) throws Exception {
-        return memberDAOB.getMemberB(bp_id);
-    }
-    */
 }

@@ -23,13 +23,6 @@ public class MemberDAOBImpl implements MemberDAOB {
 	}
 	
 	@Override
-	public List selectAllMemberListB() throws DataAccessException {
-		List<MemberVOB> businessList = null;
-		businessList = sqlSession.selectList("mapper.memberB.selectAllMemberListB");
-		return businessList;
-	}
-	
-	@Override
 	public MemberVOB selectMemberByIdB(String bp_id) throws DataAccessException {
 		MemberVOB memberVOB = (MemberVOB)sqlSession.selectOne("mapper.memberB.selectMemberByIdB", bp_id);
 		return memberVOB;
@@ -41,38 +34,5 @@ public class MemberDAOBImpl implements MemberDAOB {
 		return resultB;
 	}
 	
-	@Override
-	public MemberVOB getMemberB(String bp_id) throws DataAccessException {
-	    return sqlSession.selectOne("mapper.memberB.getMemberB", bp_id);
-	}
-
-	
-/*	@Override
-	public MemberVOB loginMemB(String bp_id) throws DataAccessException {
-		MemberVOB memberVOB = (MemberVOB)sqlSession.selectOne("mapper.memberB.loginMemB", bp_id);
-		return memberVOB;
-	}
-	
-	@Override
-	public MemberVOB getMemB(String id) throws DataAccessException {
-		int result = sqlSession.delete("mapper.member.getMemB", id);
-		return result;
-	}
-	
-	@Override
-	public int updateMemB(MemberVO memberVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.member.updateMemB", memberVO);
-		return result;
-	}
-	
-	@Override
-    public MemberVOB getMemberB(String bp_id) throws Exception {
-        return sqlSession.selectOne("mapper.member.getMemberB", bp_id);
-    }
-    
-    @Override
-    public void updateMemberB(MemberVOB memberVOB) throws Exception {
-        sqlSession.update("mapper.member.updateMemberB", memberVOB);
-    }*/
 	
 }

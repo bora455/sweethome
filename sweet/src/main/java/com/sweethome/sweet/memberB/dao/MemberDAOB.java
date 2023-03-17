@@ -11,18 +11,7 @@ import com.sweethome.sweet.memberB.vo.MemberVOB;
 public interface MemberDAOB {
 	 public MemberVOB loginByIdB(MemberVOB memberVOB) throws DataAccessException;
 	 
-	 public List selectAllMemberListB() throws DataAccessException;
 	 public MemberVOB selectMemberByIdB(String bp_id) throws DataAccessException;
 	 public int updateMemberB(MemberVOB memberVOB) throws DataAccessException;
 	 
-	// 회원 ID로 회원 정보 가져오기
-	 public MemberVOB getMemberB(String bp_id) throws DataAccessException;
-
-	 
-/*	 public MemberVO loginMemB(String id) throws DataAccessException;
-	 public int getMemberB(String id) throws DataAccessException;
-	 public int updateMemB(MemberVO memberVO) throws DataAccessException ;
-	 
-	 public MemberVOB getMemberB(String bp_id) throws Exception;
-	 public void updateMemberB(MemberVOB memberVOB) throws Exception; */
 }
