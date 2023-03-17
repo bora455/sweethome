@@ -14,6 +14,7 @@
    <definition name="/memberB/mainB" extends="baseLayoutB">
       <put-attribute name="title" value="메인페이지" />
       <put-attribute name="body" value="/WEB-INF/views/memberB/mainB.jsp" />
+      <put-attribute name="side" value="" />
    </definition>
    
    <definition name="/memberB/loginFormB" extends="baseLayoutB">

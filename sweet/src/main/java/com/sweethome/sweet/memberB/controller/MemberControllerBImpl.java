@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sweethome.sweet.member.vo.MemberVO;
 import com.sweethome.sweet.memberB.service.MemberServiceB;
 import com.sweethome.sweet.memberB.vo.MemberVOB;
 
@@ -110,6 +111,17 @@ public class MemberControllerBImpl implements MemberControllerB {
 	}
 	
 	@Override
+	@RequestMapping(value="/memberB/updateMemberB", method = RequestMethod.POST)
+	public ModelAndView updateMemberB(@ModelAttribute("memberB") MemberVOB memberB, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		System.out.println("Call updateMemberB-method of control");
+		request.setCharacterEncoding("utf-8");
+		int resultB = 0;
+		resultB = memberServiceB.updateMemberB(memberB);
+		ModelAndView mav = new ModelAndView("redirect:/memberB/listMembersB");
+		return mav;
+	}
+	
+	@Override
 	@RequestMapping(value="/memberB/listMembersB", method=RequestMethod.GET)
 	public ModelAndView listMembersB(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	    request.setCharacterEncoding("utf-8");
@@ -120,6 +132,42 @@ public class MemberControllerBImpl implements MemberControllerB {
 	    mav.addObject("businessList", businessList);
 	    return mav;
 	}
+	
+	/*
+	@Override
+	@RequestMapping(value="/memberB/memModB", method={RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView memModB(HttpServletRequest request, HttpServletResponse response, MemberVOB memberVOB) throws Exception {
+	    // 로그
+	    System.out.println("Call memModB-method of control");
+	    request.setCharacterEncoding("utf-8");
+	    String viewName = "/memberB/memModB";
+	    System.out.println("viewName : "+viewName);
+	    HttpSession session = request.getSession();
+	    // 세션에서 현재 로그인한 사용자의 아이디를 가져옴
+	    String bp_id = (String) session.getAttribute("isLogOn");
+	    // ModelAndView 객체 생성
+	    ModelAndView mav = new ModelAndView();
+	    if(request.getMethod().equals("GET")) {
+	        // GET 요청인 경우, 회원 정보 수정을 위한 폼을 보여줌
+	        MemberVOB memberB = memberServiceB.modMemberB(bp_id);
+	        mav.addObject("memberB", memberB);
+	    } else if(request.getMethod().equals("POST")) {
+	        // POST 요청인 경우, 회원 정보를 수정하고 수정된 정보를 보여줌
+	        // 입력받은 사용자 정보에 현재 로그인한 사용자의 아이디를 추가하여 업데이트
+	        memberVOB.setBp_id(bp_id);
+	        // 회원 정보 업데이트
+	        memberServiceB.updateMemberB(memberVOB);
+	        // 업데이트된 회원 정보 가져오기
+	        MemberVOB memberB = memberServiceB.getMemberB(bp_id);
+	        // 업데이트된 회원 정보와 메시지를 ModelAndView에 추가
+	        mav.addObject("memberB", memberB);
+	        mav.addObject("message", "회원정보가 수정되었습니다.");
+	    }
+	    // 뷰 이름 설정
+	    mav.setViewName(viewName);
+	    return mav;
+	}*/
+
 
 	private String getViewNameB(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();

@@ -29,18 +29,18 @@ header {
 				<c:choose>
 					<c:when test="${isLogOn == true}">
 						<h2>
-						<c:choose>
-							<c:when test="${not empty member}">${member.name} 님! 로그인을 환영합니다.</c:when>
-							<c:otherwise>${business.name} 님! 로그인을 환영합니다.</c:otherwise>
-						</c:choose>
+							<c:choose>
+								<c:when test="${not empty member}">${member.name} 님! 로그인을 환영합니다.</c:when>
+								<c:otherwise>${memberB.name} 님! 로그인을 환영합니다.</c:otherwise>
+							</c:choose>
 						</h2>
 						<c:if test="${isLogOn == true and member.member_id == 'admin'}">
 							<a href="#">관리자페이지</a>
 						</c:if>
 						<c:if test="${isLogOn == true and member.member_id != 'admin' }">
 							<c:choose>
-								<c:when test="${not empty business}">
-									<a href="${contextPath}/memberB/mayPageMainB">사업자페이지</a>
+								<c:when test="${not empty memberB}">
+									<a href="${contextPath}/memberB/myPageMainB">사업자페이지</a>
 								</c:when>
 								<c:otherwise>
 									<a href="#">마이페이지</a>

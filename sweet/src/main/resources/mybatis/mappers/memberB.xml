@@ -39,15 +39,15 @@
 		]]>
 	 </select>
   
-  	<!-- 회원 정보 조회 -->
-	<select id="memView" parameterType="String" resultMap="memResultB">
+  	<!-- 회원 정보 조회
+	<select id="getMemberB" parameterType="String" resultMap="memResultB">
 		<![CDATA[
 			select * from business where bp_id = #{bp_id}
 		]]>
 	</select>
   
-  	<!-- 회원 정보 수정 -->
-	<update id="memMod" parameterType="memberVOB">
+  	회원 정보 수정
+	<update id="updateMemberB" parameterType="memberVOB">
 		UPDATE business
 		SET bp_pw=#{bp_pw},
 			email=#{email},
@@ -63,11 +63,11 @@
 			location_x=#{location_x},
 			location_y=#{location_y}
 		WHERE bp_id=#{bp_id}
-	</update>
+	</update> -->
 
 	<select id="selectAllMemberListB" resultMap="memResultB"   >
       <![CDATA[
-        select * from business order by bp_join desc         
+        select * from business where bp_id = #{bp_id}         
       ]]>
    </select>
 
@@ -76,4 +76,13 @@
          select * from business where bp_id = #{bp_id}
       ]]>
    </select>
+   
+   <update id="updateMemberB"  parameterType="memberVOB">
+     <![CDATA[
+	     update business
+	     set bp_pw=#{bp_pw}, name=#{name}, email=#{email}
+	     where
+	     bp_id=#{bp_id}
+      ]]>      
+   </update> 
 </mapper>

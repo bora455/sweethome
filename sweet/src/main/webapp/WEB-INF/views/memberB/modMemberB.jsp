@@ -42,25 +42,25 @@ function fn_sub(obj){
 
 </head>
 <body>
-	<form name="frm" method="post" action="${contextPath }/member/updateMember.do">
+	<form name="frm" method="post" action="${contextPath }/memberB/updateMemberB">
 		<h1>회원 정보 수정창</h1>
 		<table align="center">
-			<c:if test="${business != null }">
+			<c:if test="${memberB != null }">
 			<tr>
 				<td><p>아이디</p></td>
-				<td><input type="text" name="id" id="i_id" value="${business.bp_id }" readonly></td>
+				<td><input type="text" name="bp_id" id="i_id" value="${memberB.bp_id }" readonly></td>
 			</tr>
 			<tr>
 				<td><p>비밀번호</p></td>
-				<td><input type="password" name="pwd" value="${business.bp_pw }"></td>
+				<td><input type="password" name="bp_pw" value="${memberB.bp_pw }"></td>
 			</tr>
 			<tr>
 				<td><p>이름</p></td>
-				<td><input type="text" name="name" value="${business.name }"></td>
+				<td><input type="text" name="name" value="${memberB.name }"></td>
 			</tr>
 			<tr>
 				<td><p>이메일</p></td>
-				<td><input type="text" name="email" value="${business.email }"></td>
+				<td><input type="text" name="email" value="${memberB.email }"></td>
 			</tr>
 			<tr>
 				<td></td>
