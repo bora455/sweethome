@@ -31,14 +31,6 @@ public class MemberControllerBImpl implements MemberControllerB {
 	@Autowired
 	private MemberVOB memberVOB ;
 	
-	//로그인 후 메인페이지
-	@RequestMapping(value = { "/memberB/mainB.do"}, method = RequestMethod.GET)
-	private ModelAndView mainB(HttpServletRequest request, HttpServletResponse response) {
-		String viewName = (String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(viewName);
-		return mav;
-	}
 	
 	//로그인
 	@Override
@@ -58,7 +50,7 @@ public class MemberControllerBImpl implements MemberControllerB {
 	    if(action!= null) {
 	       mav.setViewName("redirect:"+action);
 	    }else {
-	       mav.setViewName("redirect:/memberB/mainB.do");	
+	       mav.setViewName("redirect:/main.do");	
 	    }
 
 	}else {

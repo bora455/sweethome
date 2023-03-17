@@ -74,7 +74,15 @@
    <update id="updateMemberB"  parameterType="memberVOB">
      <![CDATA[
 	     update business
-	     set bp_pw=#{bp_pw}, name=#{name}, email=#{email}
+	     set bp_pw=#{bp_pw}, 
+	     	 name=#{name}, 
+	     	 email=#{email},
+	     	 addr1=#{addr1},
+			 addr2=#{addr2},
+			 tel1=#{tel1},
+			 tel2=#{tel2},
+			 hp1=#{hp1},
+			 hp2=#{hp2}
 	     where
 	     bp_id=#{bp_id}
       ]]>      
