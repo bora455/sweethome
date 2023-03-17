@@ -95,30 +95,56 @@ public class MemberControllerBImpl implements MemberControllerB {
 		return mav;
 	}
 	
+	@RequestMapping(value="/memberB/logInMemberB", method=RequestMethod.GET)
+	public ModelAndView LogInMemberB(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    System.out.println("Call LogInMemberB-method of control");
+	    request.setCharacterEncoding("utf-8");
+	    String viewName = "/memberB/logInMemberB";
+	    System.out.println("viewName : "+viewName);
+	    HttpSession session = request.getSession();
+	    MemberVOB memberVOB = (MemberVOB) session.getAttribute("memberB");
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("logInMemberB", memberVOB);
+	    mav.setViewName(viewName);
+	    return mav;
+	}
+
+	
 	@Override
 	@RequestMapping(value="/memberB/modMemberB", method=RequestMethod.GET)
 	public ModelAndView modMemberB(@RequestParam("bp_id") String bp_id, HttpServletRequest request, HttpServletResponse response)
 	        throws Exception {
 	    System.out.println("Call modMember-method of control");
 	    request.setCharacterEncoding("utf-8");
-	    String viewName = "/memberB/modMemberB"; // 수정된 부분
+	    String viewName = "/memberB/modMemberB";
 	    System.out.println("viewName : "+viewName);
-	    MemberVOB memberVOB = memberServiceB.modMemberB(bp_id);
+
+	    // 1. 세션에서 로그인한 회원 정보를 불러옵니다.
+	    HttpSession session = request.getSession();
+	    MemberVOB memberB = (MemberVOB) session.getAttribute("memberB");
+	    if (memberB == null) { // 로그인한 회원 정보가 없는 경우
+	        return new ModelAndView("redirect:/memberB/logInMemberB"); // 로그인 페이지로 이동합니다.
+	    }
+
+	    // 2. 로그인한 회원 정보를 사용해 회원 정보 수정을 진행합니다.
+	    MemberVOB memberVOB = memberServiceB.modMemberB(memberB.getBp_id());
 	    ModelAndView mav = new ModelAndView();
 	    mav.addObject("memberB",memberVOB);
 	    mav.setViewName(viewName);
 	    return mav;    
 	}
+
 	
 	@Override
 	@RequestMapping(value="/memberB/updateMemberB", method = RequestMethod.POST)
 	public ModelAndView updateMemberB(@ModelAttribute("memberB") MemberVOB memberB, HttpServletRequest request, HttpServletResponse response)throws Exception{
-		System.out.println("Call updateMemberB-method of control");
-		request.setCharacterEncoding("utf-8");
-		int resultB = 0;
-		resultB = memberServiceB.updateMemberB(memberB);
-		ModelAndView mav = new ModelAndView("redirect:/memberB/listMembersB");
-		return mav;
+	    System.out.println("Call updateMemberB-method of control");
+	    request.setCharacterEncoding("utf-8");
+	    int resultB = 0;
+	    resultB = memberServiceB.updateMemberB(memberB);
+	    ModelAndView mav = new ModelAndView("redirect:/memberB/modMemberB");
+	    mav.addObject("bp_id", memberB.getBp_id()); // 수정된 회원의 ID를 전달
+	    return mav;
 	}
 	
 	@Override

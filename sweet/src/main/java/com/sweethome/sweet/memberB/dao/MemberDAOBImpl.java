@@ -41,6 +41,12 @@ public class MemberDAOBImpl implements MemberDAOB {
 		return resultB;
 	}
 	
+	@Override
+	public MemberVOB getMemberB(String bp_id) throws DataAccessException {
+	    return sqlSession.selectOne("mapper.memberB.getMemberB", bp_id);
+	}
+
+	
 /*	@Override
 	public MemberVOB loginMemB(String bp_id) throws DataAccessException {
 		MemberVOB memberVOB = (MemberVOB)sqlSession.selectOne("mapper.memberB.loginMemB", bp_id);

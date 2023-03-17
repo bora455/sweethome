@@ -44,6 +44,11 @@ public class MemberServiceBImpl implements MemberServiceB {
 		return memberDAOB.updateMemberB(memberB);
 	}
 	
+	@Override
+	public MemberVOB LogInMemberB(String bp_id) throws DataAccessException {
+	    return memberDAOB.getMemberB(bp_id);
+	}
+	
 	/*
 	@Override //수정한 회원 정보 가져옴
     public int getMemberB(String bp_id) throws Exception {

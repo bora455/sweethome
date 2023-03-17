@@ -14,6 +14,10 @@ public interface MemberServiceB {
 	 public MemberVOB modMemberB(String bp_id) throws DataAccessException;
 	 public int updateMemberB(MemberVOB memberVOB) throws DataAccessException;
 	 
+	// 로그인한 회원 정보 가져오기
+	 public MemberVOB LogInMemberB(String bp_id) throws DataAccessException;
+
+	 
 	/* public MemberVOB modMemberB(String bp_id) throws DataAccessException;
 	 public int getMemberB(String bp_id) throws DataAccessException;
 	 public int updateMemberB(MemberVOB memberVOB) throws DataAccessException;
