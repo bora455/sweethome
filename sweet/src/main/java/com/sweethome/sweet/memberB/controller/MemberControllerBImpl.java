@@ -16,12 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.sweethome.sweet.member.vo.MemberVO;
 import com.sweethome.sweet.memberB.service.MemberServiceB;
 import com.sweethome.sweet.memberB.vo.MemberVOB;
-
-
-
+import com.sweethome.sweet.memberB.vo.ContractVO;
 
 @Controller("memberControllerB")
 //@EnableAspectJAutoProxy
@@ -101,7 +98,7 @@ public class MemberControllerBImpl implements MemberControllerB {
 	    HttpSession session = request.getSession();
 	    MemberVOB memberB = (MemberVOB) session.getAttribute("memberB");
 	    if (memberB == null) { // 로그인한 회원 정보가 없는 경우
-	        return new ModelAndView("redirect:/memberB/logInMemberB"); // 로그인 페이지로 이동합니다.
+	        return new ModelAndView("redirect:/memberB/loginB.do"); // 로그인 페이지로 이동합니다.
 	    }
 
 	    // 2. 로그인한 회원 정보를 사용해 회원 정보 수정을 진행합니다.
@@ -165,7 +162,58 @@ public class MemberControllerBImpl implements MemberControllerB {
 		return viewName;
 	}
 
+	@Override
+	@RequestMapping(value="/memberB/listContractB", method=RequestMethod.GET)
+	public ModelAndView listContractB(@RequestParam("bp_id") String bp_id, HttpServletRequest request, HttpServletResponse response)
+	        throws Exception {
+	    System.out.println("Call contractListB method of controller");
+	    request.setCharacterEncoding("utf-8");
+	    String viewName = "/memberB/listContractB";
+	    System.out.println("viewName : "+viewName);
+
+	    // 1. 세션에서 로그인한 회원 정보를 불러옵니다.
+	    HttpSession session = request.getSession();
+	    MemberVOB memberB = (MemberVOB) session.getAttribute("memberB");
+	    if (memberB == null) { // 로그인한 회원 정보가 없는 경우
+	        return new ModelAndView("redirect:/memberB/loginB.do"); // 로그인 페이지로 이동합니다.
+	    }
+
+	    // 2. 로그인한 회원의 계약 내역을 불러옵니다.
+	    List<ContractVO> contractListB = memberServiceB.contractListB(contractListB.getBp_id());
+
+	    // 3. ModelAndView 객체에 회원 정보와 계약 내역을 저장합니다.
+	    ModelAndView mav = new ModelAndView();
+	    mav.addObject("memberB", memberB);
+	    mav.addObject("contractListB", contractListB);
+	    mav.setViewName(viewName);
+
+	    return mav;
+	}
+/*
+	@Override
+	@RequestMapping(value="/memberB/updateContractB", method = RequestMethod.POST)
+	public ModelAndView updateContractB(@ModelAttribute("contractListB") ContractVO contractVO, HttpServletRequest request, HttpServletResponse response)throws Exception{
+	    System.out.println("Call updateContractB-method of control");
+	    request.setCharacterEncoding("utf-8");
+	    int resultB = 0;
+	    resultB = memberServiceB.updateContractB(contractListB);
+	    ModelAndView mav = new ModelAndView("redirect:/memberB/contractListB");
+	    mav.addObject("bp_id", contractListB.getBp_id()); // 수정된 회원의 ID를 전달
+	    return mav;
+	}*/
 	
+	/*@Override
+	@RequestMapping(value="/memberB/listContractB" ,method = RequestMethod.GET)
+	public ModelAndView listContractB(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("html/text;charset=utf-8");
+		String viewName = (String)request.getAttribute("viewName");
+		List contractListB = memberServiceB.listContractB();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("contractListB", contractListB);
+		return mav;
+	}*/
+
 	
 
 }

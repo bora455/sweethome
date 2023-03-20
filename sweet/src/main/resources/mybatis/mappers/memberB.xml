@@ -30,6 +30,16 @@
       <result property="location_x" column="location_x" />
       <result property="location_y" column="location_y" />
    </resultMap> 
+   
+   <resultMap id="contractResultB" type="contractVO">
+   	  <result property="goodscon_id" column="goodscon_id" />
+      <result property="goods_id" column="goods_id" />
+      <result property="member_id" column="member_id" />
+      <result property="bp_id" column="bp_id" />
+      <result property="price" column="price" />
+      <result property="sale_date" column="sale_date" />
+      <result property="region" column="region" />
+   </resultMap> 
  
  
 	 <select id="loginByIdB"  resultType="memberVOB"   parameterType="memberVOB" >
@@ -88,4 +98,16 @@
       ]]>      
    </update> 
    
+   <!-- <select id="selectMyOrderInfoB" resultMap="orderGoodsResultB"   parameterType="String"  >
+	    <![CDATA[
+		    select * from goods_contract
+            where goodscon_id=#{goodscon_id}
+    	]]>
+	</select> -->
+   
+   <select id="selectAllContractListB" resultMap="contractResultB"   >
+      <![CDATA[
+        select * from goods_contract order by goodscon_id desc         
+      ]]>
+   </select>
 </mapper>

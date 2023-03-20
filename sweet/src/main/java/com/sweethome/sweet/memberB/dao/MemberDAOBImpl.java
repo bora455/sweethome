@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.sweethome.sweet.member.vo.MemberVO;
 import com.sweethome.sweet.memberB.vo.MemberVOB;
+import com.sweethome.sweet.member.vo.MemberVO;
+import com.sweethome.sweet.memberB.vo.ContractVO;
 
 
 @Repository("memberDAOB")
@@ -32,6 +33,25 @@ public class MemberDAOBImpl implements MemberDAOB {
 	public int updateMemberB(MemberVOB memberVOB) throws DataAccessException {
 		int resultB = sqlSession.update("mapper.memberB.updateMemberB", memberVOB);
 		return resultB;
+	}
+	
+	/*@Override
+	public ContractVO selectContractByIdB(String bp_id) throws DataAccessException {
+		ContractVO contractVO = (ContractVO)sqlSession.selectList("mapper.memberB.selectContractByIdB", bp_id);
+		return contractVO;
+	}
+	
+	@Override
+	public int updateContractB(ContractVO contractVO) throws DataAccessException {
+		int resultB = sqlSession.update("mapper.memberB.updateContractB", contractVO);
+		return resultB;
+	}*/
+	
+	@Override
+	public List selectAllContractListB() throws DataAccessException {
+		List<ContractVO> contractListB = null;
+		contractListB = sqlSession.selectList("mapper.memberB.selectAllContractListB");
+		return contractListB;
 	}
 	
 	
