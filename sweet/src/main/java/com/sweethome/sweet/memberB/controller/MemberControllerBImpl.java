@@ -164,31 +164,23 @@ public class MemberControllerBImpl implements MemberControllerB {
 
 	@Override
 	@RequestMapping(value="/memberB/listContractB", method=RequestMethod.GET)
-	public ModelAndView listContractB(@RequestParam("bp_id") String bp_id, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView listContractB(@RequestParam("bp_id") int bp_id, HttpServletRequest request, HttpServletResponse response)
 	        throws Exception {
-	    System.out.println("Call contractListB method of controller");
+	    System.out.println("Call listContractB method of controller");
 	    request.setCharacterEncoding("utf-8");
 	    String viewName = "/memberB/listContractB";
 	    System.out.println("viewName : "+viewName);
 
-	    // 1. 세션에서 로그인한 회원 정보를 불러옵니다.
 	    HttpSession session = request.getSession();
-	    MemberVOB memberB = (MemberVOB) session.getAttribute("memberB");
-	    if (memberB == null) { // 로그인한 회원 정보가 없는 경우
-	        return new ModelAndView("redirect:/memberB/loginB.do"); // 로그인 페이지로 이동합니다.
-	    }
+	    ContractVO contractListB = (ContractVO) session.getAttribute("contractListB");
 
-	    // 2. 로그인한 회원의 계약 내역을 불러옵니다.
-	    List<ContractVO> contractListB = memberServiceB.contractListB(contractListB.getBp_id());
-
-	    // 3. ModelAndView 객체에 회원 정보와 계약 내역을 저장합니다.
+	    List<ContractVO> contractList = memberServiceB.listContractB(bp_id);
 	    ModelAndView mav = new ModelAndView();
-	    mav.addObject("memberB", memberB);
-	    mav.addObject("contractListB", contractListB);
+	    mav.addObject("contractListB", contractList);
 	    mav.setViewName(viewName);
-
-	    return mav;
+	    return mav;    
 	}
+
 /*
 	@Override
 	@RequestMapping(value="/memberB/updateContractB", method = RequestMethod.POST)

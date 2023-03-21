@@ -36,7 +36,7 @@ public class MemberDAOBImpl implements MemberDAOB {
 	}
 	
 	/*@Override
-	public ContractVO selectContractByIdB(String bp_id) throws DataAccessException {
+	public List<ContractVO> selectContractByIdB(int bp_id) throws DataAccessException {
 		ContractVO contractVO = (ContractVO)sqlSession.selectList("mapper.memberB.selectContractByIdB", bp_id);
 		return contractVO;
 	}
@@ -48,9 +48,9 @@ public class MemberDAOBImpl implements MemberDAOB {
 	}*/
 	
 	@Override
-	public List selectAllContractListB() throws DataAccessException {
+	public List<ContractVO> selectContractByIdB(int bp_id) throws DataAccessException {
 		List<ContractVO> contractListB = null;
-		contractListB = sqlSession.selectList("mapper.memberB.selectAllContractListB");
+		contractListB = sqlSession.selectList("mapper.memberB.selectContractByIdB");
 		return contractListB;
 	}
 	
