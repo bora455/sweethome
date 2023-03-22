@@ -2,6 +2,9 @@ package com.sweethome.sweet.memberB.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component("contractVO")
 public class ContractVO {
 	private int goodscon_id;
 	private int goods_id;

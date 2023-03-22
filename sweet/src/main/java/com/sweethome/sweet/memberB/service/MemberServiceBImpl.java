@@ -36,23 +36,10 @@ public class MemberServiceBImpl implements MemberServiceB {
 		return memberDAOB.updateMemberB(memberB);
 	}
 	
-	/*@Override
-	public ContractVO listContractB(int bp_id) throws DataAccessException {
+	@Override
+	public ContractVO listContractB(String bp_id) throws DataAccessException {
 		ContractVO contractVO = new ContractVO();
 		contractVO = memberDAOB.selectContractByIdB(bp_id);
 		return contractVO;
 	}
-	
-	@Override
-	public int updateContractB(ContractVO contractVO) throws DataAccessException{
-		return memberDAOB.updateContractB(contractListB);
-	}*/
-	
-	@Override
-	public List<ContractVO> listContractB(int bp_id) throws DataAccessException {
-		List contractListB = null;
-		contractListB = memberDAOB.selectContractByIdB(bp_id);
-		return contractListB;
-	}
-	
 }

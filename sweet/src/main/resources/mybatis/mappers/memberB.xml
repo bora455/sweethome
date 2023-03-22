@@ -49,32 +49,6 @@
 		]]>
 	 </select>
   
-  	<!-- 회원 정보 조회
-	<select id="getMemberB" parameterType="String" resultMap="memResultB">
-		<![CDATA[
-			select * from business where bp_id = #{bp_id}
-		]]>
-	</select>
-  
-  	회원 정보 수정
-	<update id="updateMemberB" parameterType="memberVOB">
-		UPDATE business
-		SET bp_pw=#{bp_pw},
-			email=#{email},
-			addr1=#{addr1},
-			addr2=#{addr2},
-			tel1=#{tel1},
-			tel2=#{tel2},
-			hp1=#{hp1},
-			hp2=#{hp2},
-			photo=#{photo},
-			type=#{type},
-			car=#{car},
-			location_x=#{location_x},
-			location_y=#{location_y}
-		WHERE bp_id=#{bp_id}
-	</update> -->
-
 	<select id="selectMemberByIdB" resultType="memberVOB" parameterType="String">
       <![CDATA[
          select * from business where bp_id = #{bp_id}
@@ -98,16 +72,11 @@
       ]]>      
    </update> 
    
-   <!-- <select id="selectMyOrderInfoB" resultMap="orderGoodsResultB"   parameterType="String"  >
-	    <![CDATA[
-		    select * from goods_contract
-            where goodscon_id=#{goodscon_id}
-    	]]>
-	</select> -->
-   
-   <select id="selectContractByIdB" resultMap="contractResultB"   >
-      <![CDATA[
-        select * from goods_contract order by goodscon_id desc         
-      ]]>
-   </select>
+   <select id="selectContractByIdB" resultMap="contractResultB">
+    <![CDATA[
+        SELECT * FROM goods_contract
+        WHERE bp_id = #{bp_id}
+    ]]>
+	</select>
+
 </mapper>

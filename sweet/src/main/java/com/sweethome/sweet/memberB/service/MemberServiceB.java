@@ -13,9 +13,6 @@ public interface MemberServiceB {
 	 public MemberVOB modMemberB(String bp_id) throws DataAccessException;
 	 public int updateMemberB(MemberVOB memberVOB) throws DataAccessException;
 	 
-	 public List<ContractVO> listContractB(int bp_id) throws DataAccessException;
-	/* public int updateContractB(ContractVO contractVO) throws DataAccessException;
-	 
-	 public List listContractB() throws DataAccessException;*/
+	 public ContractVO listContractB(String bp_id) throws DataAccessException;
 	 
 }

@@ -14,9 +14,5 @@ public interface MemberDAOB {
 	 public MemberVOB selectMemberByIdB(String bp_id) throws DataAccessException;
 	 public int updateMemberB(MemberVOB memberVOB) throws DataAccessException;
 	 
-	 public List<ContractVO> selectContractByIdB(int bp_id) throws DataAccessException;
-	/* public int updateContractB(ContractVO contractVO) throws DataAccessException;
-	 
-	 public List selectAllContractListB() throws DataAccessException;*/
-	 
+	 public ContractVO selectContractByIdB(String bp_id) throws DataAccessException;
 }

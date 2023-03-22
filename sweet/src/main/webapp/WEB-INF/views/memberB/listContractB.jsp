@@ -22,23 +22,24 @@
 	      <td><b>번호</b></td>
 	      <td><b>매물아이디</b></td>
 	      <td><b>사용자아이디</b></td>
-	      <td><b>사업자아이디</b></td>
 	      <td><b>매물금액</b></td>
 	      <td><b>계약날짜</b></td>
 	      <td><b>위치</b></td>
 	   </tr>
 	   
-	 <c:forEach var="contractListB" items="${contractListB}" >     
-	   <tr align="center">
-	      <td>${contractListB.goodscon_id}</td>
-	      <td>${contractListB.goods_id}</td>
-	      <td>${contractListB.member_id}</td>
-	      <td>${contractListB.bp_id}</td>
-	      <td>${contractListB.price}</td>
-	      <td>${contractListB.sale_date}</td>
-	      <td>${contractListB.region}</td>
-	    </tr>
-	  </c:forEach>   
+	 <c:forEach var="contract" items="${contractListB}">
+  <c:if test="${contract.bp_id == memberB.bp_id}">
+    <tr align="center">
+      <td>${contract.goodscon_id}</td>
+      <td>${contract.goods_id}</td>
+      <td>${contract.member_id}</td>
+      <td>${contract.price}</td>
+      <td>${contract.sale_date}</td>
+      <td>${contract.region}</td>
+    </tr>
+  </c:if>
+</c:forEach>
+  
 	</table>
 
 </body>

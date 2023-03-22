@@ -1,5 +1,6 @@
 package com.sweethome.sweet.memberB.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +28,8 @@ public class MemberControllerBImpl implements MemberControllerB {
 	private MemberServiceB memberServiceB;
 	@Autowired
 	private MemberVOB memberVOB ;
+	@Autowired
+	private ContractVO contractVO ;
 	
 	
 	//로그인
@@ -162,50 +165,5 @@ public class MemberControllerBImpl implements MemberControllerB {
 		return viewName;
 	}
 
-	@Override
-	@RequestMapping(value="/memberB/listContractB", method=RequestMethod.GET)
-	public ModelAndView listContractB(@RequestParam("bp_id") int bp_id, HttpServletRequest request, HttpServletResponse response)
-	        throws Exception {
-	    System.out.println("Call listContractB method of controller");
-	    request.setCharacterEncoding("utf-8");
-	    String viewName = "/memberB/listContractB";
-	    System.out.println("viewName : "+viewName);
-
-	    HttpSession session = request.getSession();
-	    ContractVO contractListB = (ContractVO) session.getAttribute("contractListB");
-
-	    List<ContractVO> contractList = memberServiceB.listContractB(bp_id);
-	    ModelAndView mav = new ModelAndView();
-	    mav.addObject("contractListB", contractList);
-	    mav.setViewName(viewName);
-	    return mav;    
-	}
-
-/*
-	@Override
-	@RequestMapping(value="/memberB/updateContractB", method = RequestMethod.POST)
-	public ModelAndView updateContractB(@ModelAttribute("contractListB") ContractVO contractVO, HttpServletRequest request, HttpServletResponse response)throws Exception{
-	    System.out.println("Call updateContractB-method of control");
-	    request.setCharacterEncoding("utf-8");
-	    int resultB = 0;
-	    resultB = memberServiceB.updateContractB(contractListB);
-	    ModelAndView mav = new ModelAndView("redirect:/memberB/contractListB");
-	    mav.addObject("bp_id", contractListB.getBp_id()); // 수정된 회원의 ID를 전달
-	    return mav;
-	}*/
-	
-	/*@Override
-	@RequestMapping(value="/memberB/listContractB" ,method = RequestMethod.GET)
-	public ModelAndView listContractB(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("html/text;charset=utf-8");
-		String viewName = (String)request.getAttribute("viewName");
-		List contractListB = memberServiceB.listContractB();
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("contractListB", contractListB);
-		return mav;
-	}*/
-
-	
 
 }
