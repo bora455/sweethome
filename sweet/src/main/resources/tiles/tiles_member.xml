@@ -44,4 +44,15 @@
       <put-attribute name="title" value="회원상세창" />
       <put-attribute name="body" value="/WEB-INF/views/member/viewDetail.jsp" />
    </definition> 
+   
+   
+   <definition name="/member/myPageMain" extends="baseLayout">
+	      <put-attribute name="title" value="마이페이지메인" />
+	      <put-attribute name="body" value="/WEB-INF/views/member/myPageMain.jsp" />
+	</definition>
+	
+   <definition name="/member/modMember" extends="baseLayout">
+		<put-attribute name="title" value="회원수정창"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/modMember.jsp"/>
+	</definition>
 </tiles-definitions>

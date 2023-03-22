@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sweethome.sweet.member.vo.MemberVO;
+import com.sweethome.sweet.memberB.vo.MemberVOB;
 
 
 public interface MemberController {
@@ -19,6 +20,7 @@ public interface MemberController {
                               RedirectAttributes rAttr,
                               HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
-	public ModelAndView modMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)throws Exception;
-	public ModelAndView updateMember(@ModelAttribute("info") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
+
+	public ModelAndView modMember(@RequestParam("member_id") String member_id, HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public ModelAndView updateMember(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)throws Exception;
 }

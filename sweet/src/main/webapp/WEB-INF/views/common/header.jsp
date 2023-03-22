@@ -40,7 +40,7 @@ header {
 						<c:if test="${isLogOn == true and member.member_id != 'admin' }">
 							<c:choose>
 								<c:when test="${not empty member}">
-									<a href="#">마이페이지</a>
+									<a href="${contextPath}/member/myPageMain">마이페이지</a>
 								</c:when>
 								<c:otherwise>
 									<a href="${contextPath}/memberB/myPageMainB">사업자페이지</a>

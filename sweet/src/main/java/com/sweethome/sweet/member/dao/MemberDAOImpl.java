@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.sweethome.sweet.member.vo.MemberVO;
+import com.sweethome.sweet.memberB.vo.MemberVOB;
 
 
 @Repository("memberDAO")
@@ -36,22 +37,22 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	
 	@Override
-	public MemberVO selectMemberById(String id) throws DataAccessException {
-		MemberVO memberVO = (MemberVO)sqlSession.selectOne("mapper.member.selectMemberById", id);
-		return memberVO;
-	}
-
-	@Override
 	public MemberVO loginById(MemberVO memberVO) throws DataAccessException{
 		  MemberVO vo = sqlSession.selectOne("mapper.member.loginById",memberVO);
 		return vo;
 	}
 
+
+	@Override
+	public MemberVO selectMemberById(String member_id) throws DataAccessException {
+		MemberVO memberVO = (MemberVO)sqlSession.selectOne("mapper.member.selectMemberById", member_id);
+		return memberVO;
+	}
+	
 	@Override
 	public int updateMember(MemberVO memberVO) throws DataAccessException {
 		int result = sqlSession.update("mapper.member.updateMember", memberVO);
 		return result;
 	}
-	
 
 }

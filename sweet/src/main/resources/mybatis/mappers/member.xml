@@ -9,13 +9,17 @@
       <result property="member_id" column="member_id" />
       <result property="member_pw" column="member_pw" />
       <result property="name" column="name" />
-      <result property="email" column="email" />
+      <result property="email1" column="email1" />
+      <result property="email2" column="email2" />
       <result property="addr1" column="addr1" />
       <result property="addr2" column="addr2" />
+      <result property="addr3" column="addr3" />
       <result property="tel1" column="tel1" />
       <result property="tel2" column="tel2" />
+      <result property="tel3" column="tel3" />
       <result property="hp1" column="hp1" />
       <result property="hp2" column="hp2" />
+      <result property="hp3" column="hp3" />
       <result property="member_birth" column="member_birth"/>
       <result property="join_date" column="join_Date" />
       <result property="last_date" column="last_date" />
@@ -38,11 +42,6 @@
       where member_id=#{member_id} and member_pw=#{member_pw}
    ]]>
   </select>
-  <select id="selectMemberById" resultType="memberVO" parameterType="String">
-      <![CDATA[
-         select * from member where member_id = #{member_id}
-      ]]>
-   </select>
    
    <select id="selectMyDetailInfo" resultType="memberVO"   parameterType="String"  >
        <![CDATA[
@@ -50,5 +49,31 @@
          where member_id=#{member_id}
        ]]>
    </select>   
+   
+   	<select id="selectMemberById" resultType="memberVO" parameterType="String">
+      <![CDATA[
+         select * from member where member_id = #{member_id}
+      ]]>
+   </select>
+   
+   <update id="updateMember" parameterType="memberVO">
+  <![CDATA[
+    update member
+    set member_pw=#{member_pw}, 
+        name=#{name}, 
+        email1=#{email1},
+        email2=#{email2},
+        addr1=#{addr1},
+        addr2=#{addr2},
+        addr3=#{addr3},
+        tel1=#{tel1},
+        tel2=#{tel2},
+        tel3=#{tel3},
+        hp1=#{hp1},
+        hp2=#{hp2},
+        hp3=#{hp3}
+    where member_id=#{member_id}
+  ]]>
+</update>
 
 </mapper>

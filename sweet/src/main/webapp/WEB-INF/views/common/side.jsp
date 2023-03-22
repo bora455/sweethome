@@ -10,7 +10,7 @@
 
 <div class="side_s1" style="min-height: 500px;">
 	<button class="btnon_s1" onclick="location.href = '#'">마이페이지</button>
-	<button class="btnon_s1" onclick="location.href = '#'">회원정보수정</button>
+	<button class="btnon_s1" onclick="location.href = 'modMember?member_id=${member.member_id}'">회원정보수정</button>
 	<button class="btnon_s1" onclick="location.href = '#'">계약 관리</button>
 	<button class="btnon_s1" onclick="location.href = '#'">나의 관심목록</button>
 	<button class="btnon_s1" onclick="location.href = '#'">문의 관리</button>

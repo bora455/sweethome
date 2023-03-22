@@ -109,21 +109,6 @@ public class MemberControllerImpl   implements MemberController {
 	}
 	
 	@Override
-	@RequestMapping(value="/member/modMember.do", method=RequestMethod.GET)
-	public ModelAndView modMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		System.out.println("Call modMember-method of control");
-		request.setCharacterEncoding("utf-8");
-	    String viewName = (String)request.getAttribute("viewName");
-		System.out.println("viewName : "+viewName);
-		MemberVO memberVO = memberService.modMember(id);
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("member",memberVO);
-		mav.setViewName(viewName);
-		return mav;	
-	}
-
-	@Override
 	@RequestMapping(value = "/member/logout.do", method =  RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
@@ -148,17 +133,6 @@ public class MemberControllerImpl   implements MemberController {
 		return mav;
 	}
 	
-
-	@Override
-	@RequestMapping(value="/member/updateMember.do", method = RequestMethod.POST)
-	public ModelAndView updateMember(@ModelAttribute("member") MemberVO member, HttpServletRequest request, HttpServletResponse response)throws Exception{
-		System.out.println("Call updateMember-method of control");
-		request.setCharacterEncoding("utf-8");
-		int result = 0;
-		result = memberService.updateMember(member);
-		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
-		return mav;
-	}
 
 	private String getViewName(HttpServletRequest request) throws Exception {
 		String contextPath = request.getContextPath();
@@ -190,6 +164,43 @@ public class MemberControllerImpl   implements MemberController {
 		}
 		return viewName;
 	}
+	
+	//회원 정보 수정
+		@Override
+		@RequestMapping(value="/member/modMember", method=RequestMethod.GET)
+		public ModelAndView modMember(@RequestParam("member_id") String member_id, HttpServletRequest request, HttpServletResponse response)
+		        throws Exception {
+		    System.out.println("Call modMember-method of control");
+		    request.setCharacterEncoding("utf-8");
+		    String viewName = "/member/modMember";
+		    System.out.println("viewName : "+viewName);
 
+		    // 1. 세션에서 로그인한 회원 정보를 불러옵니다.
+		    HttpSession session = request.getSession();
+		    MemberVO member = (MemberVO) session.getAttribute("member");
+		    if (member == null) { // 로그인한 회원 정보가 없는 경우
+		        return new ModelAndView("redirect:/member/loginB.do"); // 로그인 페이지로 이동합니다.
+		    }
+
+		    // 2. 로그인한 회원 정보를 사용해 회원 정보 수정을 진행합니다.
+		    MemberVO memberVOB = memberService.modMember(member.getMember_id());
+		    ModelAndView mav = new ModelAndView();
+		    mav.addObject("member",memberVOB);
+		    mav.setViewName(viewName);
+		    return mav;    
+		}
+
+		//수정한 회원 정보 업데이트
+		@Override
+		@RequestMapping(value="/member/updateMember", method = RequestMethod.POST)
+		public ModelAndView updateMember(@ModelAttribute("member") MemberVO member, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		    System.out.println("Call updateMember-method of control");
+		    request.setCharacterEncoding("utf-8");
+		    int resultB = 0;
+		    resultB = memberService.updateMember(member);
+		    ModelAndView mav = new ModelAndView("redirect:/member/modMember");
+		    mav.addObject("member_id", member.getMember_id()); // 수정된 회원의 ID를 전달
+		    return mav;
+		}
 
 }

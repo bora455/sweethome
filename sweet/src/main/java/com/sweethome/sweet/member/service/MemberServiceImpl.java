@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sweethome.sweet.member.dao.MemberDAO;
 import com.sweethome.sweet.member.vo.MemberVO;
+import com.sweethome.sweet.memberB.vo.MemberVOB;
 
 
 
@@ -26,16 +27,6 @@ public class MemberServiceImpl implements MemberService {
 		return membersList;
 	}
 	
-	
-
-	@Override
-	public MemberVO modMember(String id) throws DataAccessException {
-		MemberVO memberVO = new MemberVO();
-		memberVO = memberDAO.selectMemberById(id);
-		return memberVO;
-	}
-
-
 
 	@Override
 	public int addMember(MemberVO member) throws DataAccessException {
@@ -51,9 +42,14 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO login(MemberVO memberVO) throws Exception{
 		return memberDAO.loginById(memberVO);
 	}
-
-
-
+	
+	@Override
+	public MemberVO modMember(String member_id) throws DataAccessException {
+		MemberVO memberVO = new MemberVO();
+		memberVO = memberDAO.selectMemberById(member_id);
+		return memberVO;
+	}
+	
 	@Override
 	public int updateMember(MemberVO member)throws DataAccessException{
 		return memberDAO.updateMember(member);
