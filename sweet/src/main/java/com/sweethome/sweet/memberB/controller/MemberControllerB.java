@@ -23,7 +23,11 @@ public interface MemberControllerB {
 	public ModelAndView modMemberB(@RequestParam("bp_id") String bp_id, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView updateMemberB(@ModelAttribute("memberB") MemberVOB memberVOB, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
-	public ModelAndView sendMail(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException;
+	public ModelAndView sendMail(HttpSession session, 
+			@RequestParam("name") String name,
+			@ModelAttribute("email") String email,
+            HttpServletRequest request, 
+            HttpServletResponse response) throws IOException;
 	
 	public String pwFind() throws Exception;
 	public String pwNew(MemberVOB vo, HttpSession session) throws IOException;

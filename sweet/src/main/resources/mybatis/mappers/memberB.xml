@@ -87,9 +87,9 @@
     ]]>
 	</select>
 	
-	<!-- 이메일 -->
+	<!-- 회원정보조회 -->
 <select id="selectMemberB" parameterType="String" resultType="MemberVOB">
-SELECT * FROM business WHERE CONCAT(email1, '@', email2) = #{email1}
+SELECT * FROM business WHERE CONCAT(email1, '@', email2) = #{email1} 
 </select>
 
 <!-- 패스워드변경 -->

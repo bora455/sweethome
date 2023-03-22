@@ -129,19 +129,19 @@ public class MemberControllerBImpl implements MemberControllerB {
 	    return mav;
 	}
 	
-	//비밀번호 찾기
+	//비밀번호 찾기 form
 	@RequestMapping(value = "/memberB/pwFind")
 	public String pwFind() throws Exception{
 		return "/memberB/pwFind";
 	}
 	
 	//이메일로 인증번호 보내기
-	@RequestMapping(value = "/memberB/sendMail")
-	public ModelAndView sendMail(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String emailId = request.getParameter("email1"); // 이메일 아이디
-		String emailDomain = request.getParameter("email2"); // 이메일 주소
-		String email = emailId + emailDomain; // 전체 이메일 주소
-		String name = (String)request.getParameter("name");
+	@RequestMapping(value = "/memberB/sendMail", method = RequestMethod.POST)
+	public ModelAndView sendMail(HttpSession session, 
+			@RequestParam("name") String name,
+			@ModelAttribute("email") String email,
+            HttpServletRequest request, 
+            HttpServletResponse response) throws IOException {
 		String viewName = "/memberB/sendMail";
 	    System.out.println("viewName : "+viewName);
 		
@@ -175,17 +175,17 @@ public class MemberControllerBImpl implements MemberControllerB {
 			}
 
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("viewName");
+			mv.setViewName("/memberB/sendMail");
 			mv.addObject("num", num);
 			return mv;
 		}else {
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("viewName");
+			mv.setViewName("/memberB/pwFind");
 			return mv;
 		}
 		}else {
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("viewName");
+			mv.setViewName("/memberB/pwFind");
 			return mv;
 		}
 	}
@@ -202,6 +202,7 @@ public class MemberControllerBImpl implements MemberControllerB {
 			}
 	} 
 	
+	//새 비밀번호 없데이트
 	@RequestMapping(value = "/memberB/pwNew", method = RequestMethod.POST)
 	public String pwNew(MemberVOB vo, HttpSession session) throws IOException{
 		int result = memberServiceB.pwUpdate(vo);
