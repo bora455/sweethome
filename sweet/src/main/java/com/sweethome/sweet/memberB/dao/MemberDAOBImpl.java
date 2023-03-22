@@ -1,5 +1,7 @@
 package com.sweethome.sweet.memberB.dao;
 
+import java.io.IOException;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -37,21 +39,14 @@ public class MemberDAOBImpl implements MemberDAOB {
 		ContractVO contractVO = (ContractVO)sqlSession.selectList("mapper.memberB.selectContractByIdB", bp_id);
 		return contractVO;
 	}
-	
-	// 회원 정보 조회
-    public MemberVOB readMember(String bp_id) throws Exception {
-        return sqlSession.selectOne("mapper.memberB.readMember", bp_id);
-    }
 
-    // 비밀번호 변경
-    public void updatePw(MemberVOB memberVOB) throws Exception {
-        sqlSession.update("mapper.memberB.updatePw", memberVOB);
+	@Override
+    public MemberVOB selectMemberB(String email) throws IOException {
+        return sqlSession.selectOne("mapper.memberB.selectMemberB", email);
     }
-
-    // 아이디 중복 체크
-    public MemberVOB idCheck(String bp_id) throws Exception {
-        return sqlSession.selectOne("mapper.memberB.idCheck", bp_id);
-    }
-    
 	
+	@Override
+    public int pwUpdate(MemberVOB vo) throws IOException {
+        return sqlSession.update("mapper.memberB.pwUpdate", vo);
+    }
 }

@@ -87,22 +87,14 @@
     ]]>
 	</select>
 	
+	<!-- 이메일 -->
+<select id="selectMemberB" parameterType="String" resultType="MemberVOB">
+SELECT * FROM business WHERE CONCAT(email1, '@', email2) = #{email1}
+</select>
+
+<!-- 패스워드변경 -->
+<update id = "pwUpdate" parameterType="MemberVOB">
+update business set bp_pw=#{bp_pw} where email1 || email2= #{email}
+</update>
 	
-	<!-- 로그인시 아이디와 비밀번호 확인 -->
-	<select id="loginUserB" resultType="memberVOB">
-		select * from business where bp_id=#{bp_id} and bp_pw=#{bp_pw}
-	</select>
-	
-	<select id="findIdB" resultType="memberVOB">
-		select * from business where name=#{name} and phone=#{phone}
-	</select>
-	
-	<select id="findPwB" resultType="memberVOB">
-		select * from business where bp_id=#{bp_id} and name=#{name} and phone=#{phone}
-	</select>
-	
-	<!-- 비밀번호 변경 -->
-	<update id="updatePwB" parameterType="memberVOB">
-		update business set bp_pw=#{bp_pw} where bp_id=#{bp_id}
-	</update>
 </mapper>

@@ -1,5 +1,6 @@
 package com.sweethome.sweet.memberB.dao;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -16,8 +17,6 @@ public interface MemberDAOB {
 	 
 	 public ContractVO selectContractByIdB(String bp_id) throws DataAccessException;
 	 
-	 public MemberVOB readMember(String bp_id) throws Exception;
-	 public void updatePw(MemberVOB memberVOB) throws Exception;
-	 public MemberVOB idCheck(String bp_id) throws Exception;
-	 
+	 public MemberVOB selectMemberB(String email) throws IOException;
+	 public int pwUpdate(MemberVOB vo) throws IOException;
 }

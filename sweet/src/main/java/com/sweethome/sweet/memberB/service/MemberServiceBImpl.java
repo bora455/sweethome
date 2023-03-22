@@ -1,5 +1,6 @@
 package com.sweethome.sweet.memberB.service;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -43,4 +44,13 @@ public class MemberServiceBImpl implements MemberServiceB {
 		return contractVO;
 	}
 	
+	@Override
+    public MemberVOB selectMemberB(String email) throws IOException {
+        return memberDAOB.selectMemberB(email);
+    }
+	
+	@Override
+    public int pwUpdate(MemberVOB vo) throws IOException{
+        return memberDAOB.pwUpdate(vo);
+    }
 }

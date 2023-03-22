@@ -1,10 +1,16 @@
 package com.sweethome.sweet.memberB.controller;
 
+import java.io.IOException;
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +32,8 @@ public class MemberControllerBImpl implements MemberControllerB {
 	private MemberVOB memberVOB ;
 	@Autowired
 	private ContractVO contractVO ;
+	@Autowired
+	private JavaMailSenderImpl mailSender;
 	
 	
 	//로그인
@@ -121,4 +129,88 @@ public class MemberControllerBImpl implements MemberControllerB {
 	    return mav;
 	}
 	
+	//비밀번호 찾기
+	@RequestMapping(value = "/memberB/pwFind")
+	public String pwFind() throws Exception{
+		return "/memberB/pwFind";
+	}
+	
+	//이메일로 인증번호 보내기
+	@RequestMapping(value = "/memberB/sendMail")
+	public ModelAndView sendMail(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String emailId = request.getParameter("email1"); // 이메일 아이디
+		String emailDomain = request.getParameter("email2"); // 이메일 주소
+		String email = emailId + emailDomain; // 전체 이메일 주소
+		String name = (String)request.getParameter("name");
+		String viewName = "/memberB/sendMail";
+	    System.out.println("viewName : "+viewName);
+		
+		MemberVOB vo = memberServiceB.selectMemberB(email);
+			
+		if(vo != null) {
+		Random r = new Random();
+		int num = r.nextInt(999999); // 랜덤난수설정
+		
+		if (vo.getName().equals(name)) {
+			session.setAttribute("email", vo.getEmail1() + vo.getEmail2());
+
+			String setfrom = "bomi258@naver.com"; //보내는사람 
+			String tomail = email; //받는사람
+			String title = "[스윗홈] 비밀번호변경 인증 이메일 입니다"; 
+			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+					+ "비밀번호변경 인증번호는 " + num + " 입니다." + System.getProperty("line.separator"); // 
+
+			try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+				messageHelper.setFrom(setfrom); 
+				messageHelper.setTo(tomail); 
+				messageHelper.setSubject(title);
+				messageHelper.setText(content); 
+
+				mailSender.send(message);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("viewName");
+			mv.addObject("num", num);
+			return mv;
+		}else {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("viewName");
+			return mv;
+		}
+		}else {
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("viewName");
+			return mv;
+		}
+	}
+	
+	//이메일 인증번호 확인
+	@RequestMapping(value = "/memberB/checkEmail", method = RequestMethod.POST)
+	public String pw_set(@RequestParam(value="email_injeung") String email_injeung, @RequestParam(value = "num") String num) throws IOException{
+			
+			if(email_injeung.equals(num)) {
+				return "/memberB/pwNew";
+			}
+			else {
+				return "/memberB/pwFind";
+			}
+	} 
+	
+	@RequestMapping(value = "/memberB/pwNew", method = RequestMethod.POST)
+	public String pwNew(MemberVOB vo, HttpSession session) throws IOException{
+		int result = memberServiceB.pwUpdate(vo);
+		if(result == 1) {
+			return "/memberB/loginFormB.do";
+		}
+		else {
+			System.out.println("pw_update"+ result);
+			return "/memberB/pwNew";
+		}
+	}
 }
