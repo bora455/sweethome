@@ -42,4 +42,5 @@ public class MemberServiceBImpl implements MemberServiceB {
 		contractVO = memberDAOB.selectContractByIdB(bp_id);
 		return contractVO;
 	}
+	
 }

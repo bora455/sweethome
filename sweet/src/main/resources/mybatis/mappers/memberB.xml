@@ -5,18 +5,22 @@
 
 <mapper namespace="mapper.memberB">	
    <resultMap id="memResultB" type="memberVOB">
-   	  <result property="bp_join" column="bp_join" />
+        <result property="bp_join" column="bp_join" />
       <result property="bp_id" column="bp_id" />
       <result property="bp_pw" column="bp_pw" />
       <result property="name" column="name" />
       <result property="dp_name" column="dp_name" />
-      <result property="email" column="email" />
+      <result property="email1" column="email1" />
+      <result property="email2" column="email2" />
       <result property="addr1" column="addr1" />
       <result property="addr2" column="addr2" />
+      <result property="addr3" column="addr3" />
       <result property="tel1" column="tel1" />
       <result property="tel2" column="tel2" />
+      <result property="tel3" column="tel3" />
       <result property="hp1" column="hp1" />
       <result property="hp2" column="hp2" />
+      <result property="hp3" column="hp3" />
       <result property="bin" column="bin" />
       <result property="photo" column="photo" />
       <result property="type" column="type" />
@@ -55,22 +59,26 @@
       ]]>
    </select>
    
-   <update id="updateMemberB"  parameterType="memberVOB">
-     <![CDATA[
-	     update business
-	     set bp_pw=#{bp_pw}, 
-	     	 name=#{name}, 
-	     	 email=#{email},
-	     	 addr1=#{addr1},
-			 addr2=#{addr2},
-			 tel1=#{tel1},
-			 tel2=#{tel2},
-			 hp1=#{hp1},
-			 hp2=#{hp2}
-	     where
-	     bp_id=#{bp_id}
-      ]]>      
-   </update> 
+   <update id="updateMemberB" parameterType="memberVOB">
+  <![CDATA[
+    update business
+    set bp_pw=#{bp_pw}, 
+        name=#{name}, 
+        email1=#{email1},
+        email2=#{email2},
+        addr1=#{addr1},
+        addr2=#{addr2},
+        addr3=#{addr3},
+        tel1=#{tel1},
+        tel2=#{tel2},
+        tel3=#{tel3},
+        hp1=#{hp1},
+        hp2=#{hp2},
+        hp3=#{hp3}
+    where bp_id=#{bp_id}
+  ]]>
+</update>
+
    
    <select id="selectContractByIdB" resultMap="contractResultB">
     <![CDATA[
@@ -78,5 +86,23 @@
         WHERE bp_id = #{bp_id}
     ]]>
 	</select>
-
+	
+	
+	<!-- 로그인시 아이디와 비밀번호 확인 -->
+	<select id="loginUserB" resultType="memberVOB">
+		select * from business where bp_id=#{bp_id} and bp_pw=#{bp_pw}
+	</select>
+	
+	<select id="findIdB" resultType="memberVOB">
+		select * from business where name=#{name} and phone=#{phone}
+	</select>
+	
+	<select id="findPwB" resultType="memberVOB">
+		select * from business where bp_id=#{bp_id} and name=#{name} and phone=#{phone}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="updatePwB" parameterType="memberVOB">
+		update business set bp_pw=#{bp_pw} where bp_id=#{bp_id}
+	</update>
 </mapper>

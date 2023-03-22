@@ -20,5 +20,4 @@ public interface MemberControllerB {
 	public ModelAndView modMemberB(@RequestParam("bp_id") String bp_id, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ModelAndView updateMemberB(@ModelAttribute("memberB") MemberVOB memberVOB, HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
-	
 }
