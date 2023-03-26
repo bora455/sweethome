@@ -1,11 +1,11 @@
-# :pushpin: sweethome 프로젝트 
+# :pushpin: sweethome 프로젝트 (진행중)
 
 >부동산 중개 홈페이지    
 
 </br>
 
 ## 1. 제작 기간 & 참여 인원
-- 23.03.09~23.04.19 (진행중)
+- 23.03.09~23.04.19
 - 4명 팀 프로젝트
 
 </br>
@@ -116,5 +116,5 @@
     
 </br>
 
-## 6. 회고 / 느낀점
->프로젝트 개발 회고 글: https://borabora123.tistory.com/category/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/sweethome
+## 6. 프로젝트 과정 상세 글 (작성중)
+>https://borabora123.tistory.com/category/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/sweethome
