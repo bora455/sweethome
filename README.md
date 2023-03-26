@@ -117,4 +117,4 @@
 </br>
 
 ## 6. 회고 / 느낀점
->프로젝트 개발 회고 글: 
+>프로젝트 개발 회고 글: https://borabora123.tistory.com/category/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/sweethome
